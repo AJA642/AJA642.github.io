@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Ashish Abraham — Data Analyst</title>
+<meta name="description" content="Portfolio of Ashish Abraham, a Data Analyst / BI professional with an MSc in Data Science from the University of Birmingham Dubai, based in Bengaluru, India.">
+<meta property="og:title" content="Ashish Abraham — Data Analyst">
+<meta property="og:description" content="MSc Data Science grad. Python, SQL, Streamlit, Tableau. Currently open to Data Analyst / BI roles.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23262B28'/%3E%3Ctext x='32' y='45' font-family='monospace' font-size='34' font-weight='700' fill='%23E06A16' text-anchor='middle'%3E%3E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top">ashish_abraham</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section id="top" class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">// ASHISH ABRAHAM — DATA ANALYST</p>
+        <h1 class="hero-headline">I find the signal <span class="accent-text">hiding in the data</span>.</h1>
+        <p class="hero-subtext">MSc Data Science grad, Bengaluru. Python · SQL · Streamlit · Tableau. Currently open to Data Analyst / BI roles.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">./view-projects</a>
+          <!-- TODO: replace with real CV file at assets/Ashish_Abraham_CV.pdf -->
+          <a href="assets/Ashish_Abraham_CV.pdf" class="btn btn-secondary" target="_blank" rel="noopener">./download-cv</a>
+        </div>
+      </div>
+      <div class="hero-panel reveal">
+        <div class="panel" aria-label="Quick stats">
+          <p class="panel-title">quick_stats.json</p>
+          <dl class="stat-list">
+            <div class="stat-row">
+              <dt class="stat-key">players_analyzed</dt>
+              <dd class="stat-value">2061</dd>
+            </div>
+            <div class="stat-row">
+              <dt class="stat-key">best_model_r2</dt>
+              <dd class="stat-value">0.7843</dd>
+            </div>
+            <div class="stat-row">
+              <dt class="stat-key">dashboard_views</dt>
+              <dd class="stat-value">5</dd>
+            </div>
+            <div class="stat-row">
+              <dt class="stat-key">status</dt>
+              <dd class="stat-value">"open to work"</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="wrap">
+      <p class="eyebrow reveal">// ABOUT</p>
+      <h2 class="reveal">About</h2>
+      <p class="body-text reveal">I'm a Data Analyst with an MSc in Data Science from the University of Birmingham Dubai, and I like data that's been dragged through a real pipeline before it reaches a dashboard, not tidy sample datasets. Most of what I build starts messy: raw stats, mismatched IDs, inconsistent formats, and ends as something a non-technical stakeholder can open and actually trust. I'm looking for Data Analyst / BI roles where I can own that whole path, from cleaning and modelling through to the chart someone finally acts on. Outside of work, that same habit of hunting for hidden patterns goes straight into football analytics, which is more or less why my dissertation happened.</p>
+    </div>
+  </section>
+
+  <section id="projects" class="projects-section">
+    <div class="wrap">
+
+      <article id="featured-project" class="featured-project reveal">
+        <p class="eyebrow">// FEATURED PROJECT</p>
+        <h2>Performance vs Prestige: Detecting Bias in Football Player Valuations</h2>
+        <p class="lede">An interactive scouting dashboard and bias-detection study asking whether players are valued for their performance — or for the league they happen to play in.</p>
+
+        <div class="featured-grid">
+          <div class="featured-copy">
+            <p>MSc dissertation project, University of Birmingham Dubai. Built on 2,061 players across Europe's Big 5 leagues for the 2024-25 season, combining performance data from FBref with market valuations from Transfermarkt.</p>
+            <p>Position-specific models — XGBoost, LightGBM, and Ridge — predict each player's market value from their on-pitch performance. SHAP analysis then breaks that prediction apart to show how much of it is explained by the player's own output versus their league or confederation. The result is a 5-page Streamlit dashboard — Home, Model Performance, Value Finder, Player Explorer, Bias Explorer — built for scouting and exploring the data, not just reading about it.</p>
+
+            <div class="project-links">
+              <!-- Repo URL confirmed from the project's local git remote (origin) -->
+              <a href="https://github.com/AJA642/Football-PlayerValuation" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+              <!-- TODO: replace with live Streamlit dashboard link once deployed, then remove the disabled state below -->
+              <button type="button" class="btn btn-ghost" disabled>Live Dashboard — coming soon</button>
+            </div>
+          </div>
+
+          <div class="featured-panel">
+            <div class="panel" aria-label="Project stats">
+              <p class="panel-title">findings.json</p>
+              <dl class="stat-list">
+                <div class="stat-row">
+                  <dt class="stat-key">players</dt>
+                  <dd class="stat-value">2061</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">best_r2</dt>
+                  <dd class="stat-value">0.78 (defenders)</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">dashboard_pages</dt>
+                  <dd class="stat-value">5</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">key_finding</dt>
+                  <dd class="stat-value">"Premier League = largest bias effect, all positions"</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- TODO: replace with real dashboard screenshot (Bias Explorer or Value Finder page recommended) -->
+        <!-- Suggested: save the image to assets/screenshot-bias-explorer.png, then swap this div for:
+             <img src="assets/screenshot-bias-explorer.png" alt="Bias Explorer page of the Streamlit dashboard, showing SHAP-based bias attribution by league"> -->
+        <div class="screenshot-placeholder">
+          <span class="screenshot-label">[ dashboard screenshot — bias_explorer.png ]</span>
+        </div>
+      </article>
+
+      <div class="other-projects">
+        <p class="eyebrow reveal">// OTHER PROJECTS</p>
+        <h2 class="reveal">More in progress</h2>
+        <div class="project-grid">
+
+          <div class="project-card project-card--placeholder reveal">
+            <span class="project-card-tag">Building now</span>
+            <h3>Retail Sales KPI Dashboard</h3>
+            <p class="project-card-meta">Tableau Public</p>
+            <p>A KPI dashboard exploring sales, regional performance, and repeat-purchase trends in a public retail dataset.</p>
+            <!-- TODO: once built, replace this card's contents:
+                 1. Remove the "Building now" tag span above.
+                 2. Add a screenshot: <img src="assets/screenshot-retail-kpi.png" alt="..."> above or below the description.
+                 3. Point the button below at the Tableau Public embed/view link and remove `disabled`. -->
+            <button type="button" class="btn btn-ghost" disabled>View project — coming soon</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="wrap">
+      <p class="eyebrow reveal">// SKILLS</p>
+      <h2 class="reveal">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h3>Languages</h3>
+          <ul class="skill-tags">
+            <li>Python</li>
+            <li>SQL</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Analysis &amp; ML</h3>
+          <ul class="skill-tags">
+            <li>pandas</li>
+            <li>scikit-learn</li>
+            <li>XGBoost</li>
+            <li>LightGBM</li>
+            <li>SHAP</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Dashboards &amp; BI</h3>
+          <ul class="skill-tags">
+            <li>Streamlit</li>
+            <li>Tableau Public</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Tools</h3>
+          <ul class="skill-tags">
+            <li>Git</li>
+            <li>Excel</li>
+            <li>Jupyter</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact" class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-contact reveal">
+      <p class="eyebrow">// CONTACT</p>
+      <ul class="contact-list">
+        <li>
+          <!-- TODO: replace with real email address -->
+          <a href="mailto:replace-with-real-email@example.com">Email</a>
+        </li>
+        <li>
+          <!-- TODO: replace with real LinkedIn URL -->
+          <a href="https://linkedin.com/in/replace-with-real-handle" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+        <li><a href="https://github.com/AJA642" target="_blank" rel="noopener">GitHub</a></li>
+        <li class="contact-location">Bengaluru, India</li>
+      </ul>
+    </div>
+    <p class="footer-line">© 2026 Ashish Abraham</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
