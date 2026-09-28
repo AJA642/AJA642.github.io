@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Ashish Abraham — Data Analyst</title>
+<meta name="description" content="Portfolio of Ashish Abraham, a Data Analyst / BI professional with an MSc in Data Science from the University of Birmingham Dubai, based in Bengaluru, India.">
+<meta property="og:title" content="Ashish Abraham — Data Analyst">
+<meta property="og:description" content="MSc Data Science grad. Python, SQL, Streamlit, Tableau. Currently open to Data Analyst / BI roles.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23262B28'/%3E%3Ctext x='32' y='45' font-family='monospace' font-size='34' font-weight='700' fill='%23E06A16' text-anchor='middle'%3E%3E%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top">Ashish Abraham</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section id="top" class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Ashish Abraham</p>
+        <h1 class="hero-headline"><span class="accent-text">Data Analyst</span> with an MSc in Data Science, based in Bengaluru.</h1>
+        <p class="hero-subtext">Python · SQL · Streamlit · Tableau. Currently open to Data Analyst / BI roles.</p>
+        <p class="status-badge"><span class="status-dot"></span>Open to work</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="assets/Ashish_Abraham_CV.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="wrap">
+      <p class="eyebrow reveal">About</p>
+      <h2 class="reveal">About</h2>
+      <div class="about-grid">
+        <p class="body-text reveal">I'm a Data Analyst with an MSc in Data Science from the University of Birmingham Dubai, and I like data that's been dragged through a real pipeline before it reaches a dashboard, not tidy sample datasets. Most of what I build starts messy: raw stats, mismatched IDs, inconsistent formats, and ends as something a non-technical stakeholder can open and actually trust. I'm looking for Data Analyst / BI roles where I can own that whole path, from cleaning and modelling through to the chart someone finally acts on. Outside of work, that same habit of hunting for hidden patterns goes straight into football analytics, which is more or less why my dissertation happened.</p>
+        <div class="about-side reveal">
+          <div class="about-block">
+            <p class="eyebrow">Education</p>
+            <ul class="credential-list">
+              <li class="credential">
+                <img src="assets/logos/christ-university.png" alt="Christ University, Bangalore" class="credential-logo">
+                <span class="credential-name">Christ University, Bangalore</span>
+              </li>
+              <li class="credential">
+                <img src="assets/logos/uob-dubai-light.svg" alt="University of Birmingham Dubai" class="credential-logo">
+                <span class="credential-name">University of Birmingham Dubai</span>
+              </li>
+            </ul>
+          </div>
+          <div class="about-block">
+            <p class="eyebrow">Experience</p>
+            <ul class="credential-list">
+              <li class="credential">
+                <img src="assets/logos/cgi.svg" alt="CGI" class="credential-logo">
+                <span class="credential-name">CGI</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="wrap">
+      <p class="eyebrow reveal">Skills</p>
+      <h2 class="reveal">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h3>Languages</h3>
+          <ul class="skill-tags">
+            <li>Python</li>
+            <li>SQL</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Analysis &amp; ML</h3>
+          <ul class="skill-tags">
+            <li>pandas</li>
+            <li>scikit-learn</li>
+            <li>XGBoost</li>
+            <li>LightGBM</li>
+            <li>SHAP</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Dashboards &amp; BI</h3>
+          <ul class="skill-tags">
+            <li>Streamlit</li>
+            <li>Tableau Public</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Tools</h3>
+          <ul class="skill-tags">
+            <li>Git</li>
+            <li>Excel</li>
+            <li>Jupyter</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects-section">
+    <div class="wrap">
+
+      <article id="featured-project" class="featured-project reveal">
+        <p class="eyebrow">Featured Project</p>
+        <h2>Performance vs Prestige: Detecting Bias in Football Player Valuations</h2>
+        <p class="lede">An interactive scouting dashboard and bias-detection study asking whether players are valued for their performance — or for the league they happen to play in.</p>
+
+        <div class="featured-grid">
+          <div class="featured-copy">
+            <p>MSc dissertation project, University of Birmingham Dubai. Built on 2,061 players across Europe's Big 5 leagues for the 2024-25 season, combining performance data from FBref with market valuations from Transfermarkt.</p>
+            <p>Position-specific models — XGBoost, LightGBM, and Ridge — predict each player's market value from their on-pitch performance. SHAP analysis then breaks that prediction apart to show how much of it is explained by the player's own output versus their league or confederation. The result is a 5-page Streamlit dashboard — Home, Model Performance, Value Finder, Player Explorer, Bias Explorer — built for scouting and exploring the data, not just reading about it.</p>
+
+            <div class="project-links">
+              <!-- Repo URL confirmed from the project's local git remote (origin) -->
+              <a href="https://github.com/AJA642/Football-PlayerValuation" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+              <!-- TODO: replace with live Streamlit dashboard link once deployed, then remove the disabled state below -->
+              <button type="button" class="btn btn-ghost" disabled>Live Dashboard — coming soon</button>
+            </div>
+          </div>
+
+          <div class="featured-panel">
+            <div class="panel" aria-label="Project stats">
+              <p class="panel-title">Project Highlights</p>
+              <dl class="stat-list">
+                <div class="stat-row">
+                  <dt class="stat-key">Players</dt>
+                  <dd class="stat-value">2,061</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">Best R²</dt>
+                  <dd class="stat-value">0.78 (defenders)</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">Dashboard Pages</dt>
+                  <dd class="stat-value">5</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">Key Finding</dt>
+                  <dd class="stat-value">Premier League — largest bias effect, all positions</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <div class="screenshot-placeholder">
+          <!-- Screenshot of the live Bias Explorer page, captured locally -->
+          <img src="assets/screenshot-bias-explorer.png" alt="Bias Explorer page of the Streamlit dashboard: a League Bias chart showing SHAP contribution by league and position, with Premier League's bars extending furthest of all five leagues — the largest bias effect across every position">
+        </div>
+      </article>
+
+      <div class="other-projects">
+        <p class="eyebrow reveal">Other Projects</p>
+        <h2 class="reveal">More projects</h2>
+        <div class="project-grid">
+
+          <div class="project-card reveal">
+            <div class="project-card-image">
+              <!-- Chart generated by analysis.py in the Flight-Delays-Analysis project -->
+              <img src="assets/screenshot-flight-delays.png" alt="Bar chart showing the cascading delay effect: average departure delay climbs from 6.7 minutes on an aircraft's first flight of the day to 88.8 minutes when that same aircraft's previous leg landed over an hour late">
+            </div>
+            <h3>On-Time or Not: A SQL Analysis of US Flight Delays</h3>
+            <p class="project-card-meta">SQL · Python · SQLite</p>
+            <p>A SQL + Python case study on 1.4M US domestic flights, tracing how delay cascades through an aircraft's day and which airports and airlines actually drive it.</p>
+            <div class="panel" aria-label="Flight delays project stats">
+              <p class="panel-title">Query Results</p>
+              <dl class="stat-list">
+                <div class="stat-row">
+                  <dt class="stat-key">Flights Analyzed</dt>
+                  <dd class="stat-value">1.4M</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">Worst Cascading Delay</dt>
+                  <dd class="stat-value">88.8 min</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">Weather Cancellations</dt>
+                  <dd class="stat-value">67%</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="project-links">
+              <!-- TODO: replace with real GitHub repo URL once pushed, then switch to btn-primary and remove disabled -->
+              <button type="button" class="btn btn-ghost" disabled>GitHub — coming soon</button>
+              <!-- TODO: point to the GitHub-rendered REPORT.md once the repo is pushed
+                   (e.g. https://github.com/AJA642/<repo-name>/blob/main/REPORT.md), then remove disabled -->
+              <button type="button" class="btn btn-ghost" disabled>Case study — coming soon</button>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-card-image">
+              <!-- Chart generated by src/visualize.py in the Stock-Portfolio-Analyzer project -->
+              <img src="assets/screenshot-stock-analyzer.png" alt="Line chart comparing four trading strategies on a $10,000 starting portfolio: Momentum Rotation reaches roughly $318,000 after 10 years, well above Buy &amp; Hold's $97,000, with MA Crossover and Mean Reversion trailing behind">
+            </div>
+            <h3>Stock Portfolio Analyzer &amp; Backtesting Engine</h3>
+            <p class="project-card-meta">Python · pandas · Streamlit</p>
+            <p>A quantitative finance tool that backtests 4 trading strategies across 4 example portfolios over 10 years of daily data, then stress-tests the results with Monte Carlo simulation.</p>
+            <div class="panel" aria-label="Stock portfolio analyzer project stats">
+              <p class="panel-title">Backtest Results</p>
+              <dl class="stat-list">
+                <div class="stat-row">
+                  <dt class="stat-key">Best Sharpe</dt>
+                  <dd class="stat-value">1.38 (Equal Weight)</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">Momentum Rotation Return</dt>
+                  <dd class="stat-value">3,078%</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">Tickers Analyzed</dt>
+                  <dd class="stat-value">15</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="project-links">
+              <!-- TODO: replace with real GitHub repo URL once pushed, then switch to btn-primary and remove disabled -->
+              <button type="button" class="btn btn-ghost" disabled>GitHub — coming soon</button>
+              <!-- TODO: point to the GitHub-rendered REPORT.md once the repo is pushed
+                   (e.g. https://github.com/AJA642/Stock-Portfolio-Analyzer/blob/main/REPORT.md), then remove disabled -->
+              <button type="button" class="btn btn-ghost" disabled>Case study — coming soon</button>
+            </div>
+          </div>
+
+          <div class="project-card reveal">
+            <div class="project-card-image">
+              <!-- Chart generated by src/visualize.py in the Resume-Matcher project -->
+              <img src="assets/screenshot-resume-matcher.png" alt="Bar chart of matched (green) versus missing (red) skills for an entry-level resume against a senior job description, showing gaps in experiment design and mentoring">
+            </div>
+            <h3>Resume ↔ Job Description Matcher</h3>
+            <p class="project-card-meta">Python · scikit-learn · Streamlit</p>
+            <p>An NLP tool that scores resume/JD fit three different ways — TF-IDF, skill-taxonomy overlap, and sentence embeddings — and turns the result into an actionable gap analysis instead of a bare score.</p>
+            <div class="panel" aria-label="Resume matcher project stats">
+              <p class="panel-title">Evaluation</p>
+              <dl class="stat-list">
+                <div class="stat-row">
+                  <dt class="stat-key">Best Single Method</dt>
+                  <dd class="stat-value">TF-IDF (ρ=0.836)</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">Combined Score</dt>
+                  <dd class="stat-value">ρ=0.888</dd>
+                </div>
+                <div class="stat-row">
+                  <dt class="stat-key">Tests Passing</dt>
+                  <dd class="stat-value">39</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="project-links">
+              <!-- TODO: replace with real GitHub repo URL once pushed, then switch to btn-primary and remove disabled -->
+              <button type="button" class="btn btn-ghost" disabled>GitHub — coming soon</button>
+              <!-- TODO: point to the GitHub-rendered REPORT.md once the repo is pushed
+                   (e.g. https://github.com/AJA642/Resume-Matcher/blob/main/REPORT.md), then remove disabled -->
+              <button type="button" class="btn btn-ghost" disabled>Case study — coming soon</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact" class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-contact reveal">
+      <p class="eyebrow">Contact</p>
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:ajabraham.642@gmail.com">Email</a>
+        </li>
+        <li>
+          <!-- TODO: replace with real LinkedIn URL -->
+          <a href="https://linkedin.com/in/replace-with-real-handle" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+        <li><a href="https://github.com/AJA642" target="_blank" rel="noopener">GitHub</a></li>
+        <li class="contact-location">Bengaluru, India</li>
+      </ul>
+    </div>
+    <p class="footer-line">© 2026 Ashish Abraham</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

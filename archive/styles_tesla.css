@@ -1,0 +1,608 @@
+/* ---------------------------------------------------------------
+   Design tokens — Tesla system (see DESIGN.md)
+--------------------------------------------------------------- */
+:root {
+  --blue:         #3E6AE1;
+  --white:        #FFFFFF;
+  --light-ash:    #F4F4F4;
+  --carbon:       #171A20;
+  --graphite:     #393C41;
+  --pewter:       #5C5E62;
+  --silver-fog:   #8E8E8E;
+  --cloud-gray:   #EEEEEE;
+  --pale-silver:  #D0D1D2;
+  --frosted:      rgba(255, 255, 255, 0.75);
+
+  --font-display: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-text:    -apple-system, 'Helvetica Neue', Arial, sans-serif;
+
+  --ease: cubic-bezier(0.5, 0, 0, 0.75);
+  --t: 0.33s;
+
+  --wrap: 1383px;
+}
+
+/* ---------------------------------------------------------------
+   Reset
+--------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, p, dl, dd, dt, ul, li, figure { margin: 0; }
+ul { padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; }
+a { color: inherit; text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.001ms !important; }
+}
+
+/* ---------------------------------------------------------------
+   Base — 14px is the system's dominant size; nothing above 40px
+--------------------------------------------------------------- */
+body {
+  background: var(--white);
+  color: var(--graphite);
+  font-family: var(--font-text);
+  font-size: 0.875rem;   /* 14px */
+  font-weight: 400;
+  line-height: 1.43;     /* 20px */
+}
+
+h1, h2, h3 { font-weight: 500; }
+
+.t-wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ---------------------------------------------------------------
+   Accessibility
+--------------------------------------------------------------- */
+.t-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--carbon);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  z-index: 100;
+  transition: top var(--t) ease;
+}
+.t-skip-link:focus { top: 1rem; }
+
+a:focus-visible,
+button:focus-visible,
+.t-skip-link:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------
+   Header — no background, no border, no shadow; frosts on scroll
+--------------------------------------------------------------- */
+.t-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: transparent;
+  transition: background-color var(--t) ease, backdrop-filter var(--t) ease;
+}
+
+.t-header--scrolled {
+  background: var(--frosted);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.t-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-height: 68px;
+  padding-block: 0.75rem;
+}
+
+.t-logo {
+  font-family: var(--font-text);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: color var(--t) ease;
+}
+.t-header--scrolled .t-logo { color: var(--carbon); }
+
+.t-nav {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.t-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--white);
+  background: transparent;
+  transition: color var(--t) ease, background-color var(--t) ease;
+}
+.t-header--scrolled .t-nav a { color: var(--carbon); }
+
+.t-nav a:hover { background: rgba(128, 128, 128, 0.12); }
+
+/* ---------------------------------------------------------------
+   Buttons — 4px radius everywhere, color-only transitions
+--------------------------------------------------------------- */
+.t-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  width: 200px;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  border: 3px solid transparent;
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0) 0 0 0 2px inset;
+  transition: border-color var(--t) ease, background-color var(--t) ease,
+              color var(--t) ease, box-shadow 0.25s ease;
+}
+.t-btn:focus-visible {
+  box-shadow: rgba(62, 106, 225, 0.35) 0 0 0 2px inset;
+}
+
+.t-btn-primary {
+  background: var(--blue);
+  color: var(--white);
+}
+.t-btn-primary:hover { background: #3159c4; }
+
+.t-btn-secondary {
+  background: var(--white);
+  color: var(--graphite);
+  width: 160px;
+}
+.t-btn-secondary:hover { background: var(--light-ash); }
+
+.t-btn-ghost[disabled] {
+  background: var(--light-ash);
+  color: var(--silver-fog);
+  width: 160px;
+  cursor: not-allowed;
+}
+
+.t-link {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--pewter);
+  box-shadow: rgba(92, 94, 98, 0) 0 -1px 0 0 inset;
+  transition: box-shadow var(--t) var(--ease), color var(--t) ease;
+}
+.t-link:hover {
+  color: var(--carbon);
+  box-shadow: rgba(23, 26, 32, 0.6) 0 -1px 0 0 inset;
+}
+.t-link[aria-disabled="true"] {
+  color: var(--silver-fog);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------
+   Hero — Carbon Dark surface (the system's own dark-hero-text
+   token), full viewport, one message, model -> subtitle -> CTAs
+--------------------------------------------------------------- */
+.t-hero {
+  min-height: 100vh;
+  margin-top: -68px;
+  padding-top: 68px;
+  display: flex;
+  align-items: center;
+  background: var(--carbon);
+  color: var(--white);
+}
+
+.t-hero-inner {
+  padding-block: clamp(3rem, 8vw, 5rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.t-promo {
+  font-size: 1.375rem;   /* 22px */
+  font-weight: 400;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+}
+
+.t-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem); /* 28px mobile -> 40px desktop */
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: normal;
+  max-width: 16ch;
+  color: var(--white);
+}
+
+.t-hero-subtitle {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 44ch;
+}
+
+.t-hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.t-hero-actions .t-btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.t-hero-actions .t-btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+
+.t-stats {
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.t-stat { text-align: center; }
+
+.t-stat-value {
+  display: block;
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 500;
+  color: var(--white);
+}
+
+.t-stat-label {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------------------------------------------------------------
+   Section rhythm — generous, one idea per screen
+--------------------------------------------------------------- */
+.t-section { padding-block: clamp(4rem, 10vw, 7rem); }
+.t-section--ash { background: var(--light-ash); }
+
+.t-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--carbon);
+  margin-bottom: 1.5rem;
+}
+
+.t-body {
+  font-size: 0.875rem;
+  line-height: 1.43;
+  color: var(--graphite);
+  max-width: 62ch;
+}
+
+/* ---------------------------------------------------------------
+   About — two-column: bio + quiet education/experience lockups
+--------------------------------------------------------------- */
+.t-about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3rem);
+  align-items: start;
+}
+
+.t-about-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.t-about-block .t-project-meta { margin-bottom: 0.85rem; }
+
+.t-credential-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.t-credential {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.t-credential-logo {
+  height: 26px;
+  width: auto;
+  max-width: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.t-credential-name {
+  font-size: 0.875rem;
+  color: var(--graphite);
+}
+
+@media (min-width: 1024px) {
+  .t-about-grid { grid-template-columns: 1.3fr 1fr; }
+}
+
+/* ---------------------------------------------------------------
+   Featured project — flagship showcase, framed product shot
+--------------------------------------------------------------- */
+.t-featured-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  font-weight: 500;
+  color: var(--carbon);
+  max-width: 22ch;
+  margin-bottom: 0.75rem;
+}
+
+.t-featured-copy p { color: var(--graphite); }
+.t-featured-copy p + p { margin-top: 1rem; }
+
+.t-featured-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.t-featured-media {
+  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  border-radius: 0.75rem; /* 12px */
+  overflow: hidden;
+  background: var(--white);
+}
+.t-featured-media img { width: 100%; }
+
+.t-featured-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cloud-gray);
+}
+
+/* ---------------------------------------------------------------
+   Other projects — Vehicle Card pattern: image, name below,
+   two text links. No borders, no shadows, no hover transforms.
+--------------------------------------------------------------- */
+.t-projects-heading { margin-bottom: 2.5rem; }
+
+.t-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.t-project-card { display: flex; flex-direction: column; }
+
+.t-project-media {
+  aspect-ratio: 16 / 10;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--white);
+}
+.t-project-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.t-project-media--placeholder {
+  background: var(--light-ash);
+  display: flex;
+  align-items: flex-start;
+  padding: 1.25rem;
+}
+
+.t-project-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.t-project-name {
+  margin-top: 1.25rem;
+  font-size: 1.0625rem; /* 17px */
+  font-weight: 500;
+  color: var(--carbon);
+}
+
+.t-project-meta {
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--pewter);
+}
+
+.t-project-desc {
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  color: var(--graphite);
+}
+
+.t-project-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin-top: 0.85rem;
+  font-size: 0.8125rem;
+  color: var(--pewter);
+}
+.t-project-stats strong { color: var(--carbon); font-weight: 500; }
+
+.t-project-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* ---------------------------------------------------------------
+   Skills — plain text, middot-separated; no pills, no borders
+--------------------------------------------------------------- */
+.t-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.t-skill-group-title {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--carbon);
+  margin-bottom: 0.6rem;
+}
+
+.t-skill-list { display: flex; flex-wrap: wrap; }
+.t-skill-list li { font-size: 0.875rem; color: var(--graphite); }
+.t-skill-list li:not(:last-child)::after {
+  content: '·';
+  color: var(--pale-silver);
+  margin: 0 0.5rem;
+}
+
+/* ---------------------------------------------------------------
+   Footer — dark bookend, plain links
+--------------------------------------------------------------- */
+.t-footer {
+  background: var(--carbon);
+  color: rgba(255, 255, 255, 0.7);
+  padding-block: clamp(3rem, 7vw, 4.5rem) 6rem;
+}
+
+.t-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  font-size: 0.875rem;
+}
+
+.t-footer-links a {
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: rgba(255, 255, 255, 0) 0 -1px 0 0 inset;
+  transition: box-shadow var(--t) var(--ease), color var(--t) ease;
+}
+.t-footer-links a:hover {
+  color: var(--white);
+  box-shadow: rgba(255, 255, 255, 0.6) 0 -1px 0 0 inset;
+}
+
+.t-footer-location { color: rgba(255, 255, 255, 0.45); }
+
+.t-footer-line {
+  margin-top: 1.5rem;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ---------------------------------------------------------------
+   Persistent chat bar — anchored to viewport bottom
+--------------------------------------------------------------- */
+.t-chatbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  background: var(--white);
+  border-top: 1px solid var(--cloud-gray);
+}
+
+.t-chatbar-inner {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.t-chatbar-text {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  min-width: 0;
+}
+
+.t-chatbar-label { font-weight: 500; color: var(--carbon); white-space: nowrap; }
+.t-chatbar-placeholder {
+  color: var(--silver-fog);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.t-chatbar-cta {
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--blue);
+  padding: 0.5rem 0.25rem;
+  transition: color var(--t) ease;
+}
+.t-chatbar-cta:hover { color: #3159c4; }
+
+/* keep the fixed bottom bar from covering footer content */
+main, .t-footer { padding-bottom: 56px; }
+
+/* ---------------------------------------------------------------
+   Breakpoints
+--------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  .t-featured-grid { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1024px) {
+  .t-featured-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: clamp(2rem, 5vw, 3rem);
+    align-items: start;
+  }
+  .t-featured-media { margin-top: 0; }
+}
+
+@media (max-width: 767px) {
+  .t-nav { display: none; }
+  .t-hero-actions { flex-direction: column; width: 100%; max-width: 280px; }
+  .t-btn, .t-hero-actions .t-btn { width: 100%; }
+  .t-projects-grid { grid-template-columns: 1fr; }
+  .t-stats { flex-wrap: wrap; justify-content: center; }
+  .t-chatbar-label { display: none; }
+}

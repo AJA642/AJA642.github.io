@@ -1,0 +1,509 @@
+/* ---------------------------------------------------------------
+   Design tokens — Lamborghini system (see Lamborghini-design-analysis)
+   LamboType is proprietary; substituted here with Archivo (single
+   typeface discipline preserved) — Roboto/Helvetica/Arial fallback.
+--------------------------------------------------------------- */
+:root {
+  --gold:         #FFC000;
+  --gold-dark:    #917300;
+  --gold-text:    #FFCE3E;
+  --cyan:         #29ABE2;
+  --link-blue:    #3860BE;
+  --teal-action:  #1EAEDB;
+
+  --black:        #000000;
+  --charcoal:     #202020;
+  --dark-iron:    #181818;
+
+  --white:        #FFFFFF;
+  --smoke:        #F5F5F5;
+  --ash:          #7D7D7D;
+  --steel:        #969696;
+
+  --font: 'Archivo', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+
+  --wrap: 1200px;
+}
+
+/* ---------------------------------------------------------------
+   Reset
+--------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, p, dl, dd, dt, ul, li { margin: 0; }
+ul { padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; }
+a { color: inherit; text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.001ms !important; }
+}
+
+/* ---------------------------------------------------------------
+   Base — darkness is whitespace
+--------------------------------------------------------------- */
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.l-wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+/* ---------------------------------------------------------------
+   Accessibility
+--------------------------------------------------------------- */
+.l-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--gold);
+  color: var(--black);
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  z-index: 200;
+  transition: top 0.15s ease;
+}
+.l-skip-link:focus { top: 1rem; }
+
+a:focus-visible,
+button:focus-visible,
+.l-skip-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------
+   Nav — floating, transparent, hamburger-only at every breakpoint
+--------------------------------------------------------------- */
+.l-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: transparent;
+  height: 56px;
+}
+
+.l-nav-inner {
+  height: 56px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.l-nav-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--white);
+  font-size: 0.875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  justify-self: start;
+  padding: 0.5rem 0;
+}
+
+.l-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 22px;
+}
+.l-hamburger span { display: block; height: 2px; background: var(--white); }
+
+.l-wordmark {
+  justify-self: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.l-nav-contact {
+  justify-self: end;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  opacity: 0.8;
+}
+.l-nav-contact:hover { color: var(--gold-text); }
+
+/* ---------------------------------------------------------------
+   Full-screen menu drawer — color/opacity transition only, no
+   scale or translate per system policy
+--------------------------------------------------------------- */
+.l-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: var(--black);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.l-drawer.is-open { opacity: 1; visibility: visible; }
+
+.l-drawer-inner {
+  margin: auto;
+  text-align: center;
+}
+
+.l-drawer-close {
+  position: absolute;
+  top: 1.4rem;
+  right: clamp(1.25rem, 5vw, 2.5rem);
+  color: var(--white);
+  font-size: 0.875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.l-drawer-links a {
+  display: block;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  transition: color 0.15s ease;
+}
+.l-drawer-links a:hover { color: var(--gold); }
+
+/* ---------------------------------------------------------------
+   Buttons — zero radius, sharp, color-only interaction
+--------------------------------------------------------------- */
+.l-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  min-height: 48px;
+  border-radius: 0;
+  border: none;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.l-btn-gold { background: var(--gold); color: var(--black); }
+.l-btn-gold:hover { background: var(--gold-dark); }
+
+.l-btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 16px 24px;
+}
+.l-btn-ghost:hover { background: var(--teal-action); opacity: 0.7; }
+
+.l-btn-disabled {
+  background: transparent;
+  color: var(--steel);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 16px 24px;
+  cursor: not-allowed;
+}
+
+.l-link {
+  font-size: 1rem;
+  color: var(--white);
+  text-decoration: underline;
+}
+.l-link:hover { color: var(--link-blue); }
+
+.l-mute-link {
+  font-size: 0.875rem;
+  color: var(--steel);
+  cursor: not-allowed;
+}
+
+.l-badge {
+  display: inline-flex;
+  background: var(--steel);
+  color: var(--white);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+/* hexagonal motif — the brand's signature geometric echo */
+.l-hex {
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  display: inline-block;
+}
+
+/* ---------------------------------------------------------------
+   Hero — full black canvas, extreme display scale, no video asset
+--------------------------------------------------------------- */
+.l-hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  background: var(--black);
+}
+
+.l-hero-inner { padding-block: clamp(2.5rem, 8vw, 4rem); }
+
+.l-hero-inner > .l-badge { margin-bottom: 1.5rem; }
+
+.l-hero-title {
+  font-family: var(--font);
+  font-size: clamp(2.25rem, 7.5vw, 5.5rem); /* 36px mobile -> 88px desktop */
+  font-weight: 400;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--white);
+  max-width: 20ch;
+}
+
+.l-hero-subtitle {
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.56;
+  color: var(--ash);
+  max-width: 46ch;
+}
+
+.l-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.l-spec-row {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--charcoal);
+}
+
+.l-spec-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--gold-text);
+}
+
+.l-spec-label {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+/* ---------------------------------------------------------------
+   Section rhythm
+--------------------------------------------------------------- */
+.l-section { padding-block: 56px; }
+
+.l-section-title {
+  font-size: clamp(1.75rem, 4vw, 3.375rem); /* 54px */
+  font-weight: 400;
+  line-height: 1.19;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.l-body {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ash);
+  max-width: 64ch;
+}
+
+/* ---------------------------------------------------------------
+   About — two-column: bio + quiet education/experience lockups
+--------------------------------------------------------------- */
+.l-about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.l-about-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.l-about-block .l-card-meta { display: block; margin-bottom: 0.85rem; }
+
+.l-credential-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.l-credential {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.l-credential-logo {
+  height: 26px;
+  width: auto;
+  max-width: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.l-credential-name {
+  font-size: 0.9375rem;
+  color: var(--ash);
+}
+
+@media (min-width: 1024px) {
+  .l-about-grid { grid-template-columns: 1.3fr 1fr; }
+}
+
+/* ---------------------------------------------------------------
+   Featured project — news-card pattern on charcoal
+--------------------------------------------------------------- */
+.l-feature-card {
+  background: var(--charcoal);
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.l-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.l-feature-title {
+  font-size: 1.6875rem; /* 27px, feature heading */
+  font-weight: 400;
+  line-height: 1.37;
+  text-transform: uppercase;
+  max-width: 20ch;
+  margin-bottom: 1.25rem;
+}
+
+.l-feature-copy p { color: var(--ash); }
+.l-feature-copy p + p { margin-top: 1rem; }
+
+.l-feature-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.l-feature-note {
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--steel);
+}
+
+.l-feature-media { background: var(--black); }
+.l-feature-media img { width: 100%; }
+
+/* ---------------------------------------------------------------
+   Card grid — Other Projects
+--------------------------------------------------------------- */
+.l-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.l-card {
+  background: var(--charcoal);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.l-card-media { aspect-ratio: 16 / 9; background: var(--black); overflow: hidden; }
+.l-card-media img { width: 100%; height: 100%; object-fit: cover; }
+.l-card-media--placeholder { display: flex; align-items: flex-start; padding: 1rem; }
+
+.l-card-body { padding: 1.25rem 1.25rem 0; display: flex; flex-direction: column; gap: 0.4rem; }
+
+.l-card-title { font-size: 1.5rem; font-weight: 400; text-transform: uppercase; line-height: 1.2; }
+
+.l-card-meta { font-size: 0.8125rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--steel); }
+
+.l-card-desc { font-size: 0.9375rem; line-height: 1.5; color: var(--ash); }
+
+.l-card-stats { display: flex; flex-direction: column; gap: 0.15rem; font-size: 0.8125rem; color: var(--ash); }
+.l-card-stats strong { color: var(--white); font-weight: 700; }
+
+.l-card-links { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.3rem; }
+
+/* ---------------------------------------------------------------
+   Skills
+--------------------------------------------------------------- */
+.l-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.l-skill-card { background: var(--charcoal); padding: 1.75rem; }
+
+.l-skill-title {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 1.25rem; font-weight: 400; text-transform: uppercase; margin-bottom: 0.85rem;
+}
+
+.l-skill-list { display: flex; flex-wrap: wrap; }
+.l-skill-list li { font-size: 1rem; color: var(--ash); }
+.l-skill-list li:not(:last-child)::after { content: '·'; color: var(--steel); margin: 0 0.5rem; }
+
+/* ---------------------------------------------------------------
+   CTA + Footer
+--------------------------------------------------------------- */
+.l-cta { background: var(--black); border-top: 1px solid var(--charcoal); padding-block: 64px; text-align: center; }
+.l-cta-title { font-size: 2.5rem; font-weight: 400; text-transform: uppercase; line-height: 1.15; max-width: 20ch; margin-inline: auto; }
+.l-cta .l-btn { margin-top: 2rem; }
+
+.l-footer { background: var(--dark-iron); padding-block: 56px; }
+.l-footer-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: 0.875rem; }
+.l-footer-links a { color: var(--steel); transition: color 0.15s ease; }
+.l-footer-links a:hover { color: var(--gold-text); }
+.l-footer-fine { margin-top: 1.5rem; font-size: 0.75rem; color: var(--steel); }
+
+/* ---------------------------------------------------------------
+   Breakpoints
+--------------------------------------------------------------- */
+@media (min-width: 1024px) { .l-feature-grid { grid-template-columns: 1.3fr 1fr; } }
+@media (max-width: 1023px) { .l-cards-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 767px) {
+  .l-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .l-hero-actions .l-btn, .l-feature-actions .l-btn { width: 100%; }
+  .l-spec-row { flex-wrap: wrap; gap: 1.5rem; }
+}
+@media (max-width: 480px) { .l-cards-grid { grid-template-columns: 1fr; } }

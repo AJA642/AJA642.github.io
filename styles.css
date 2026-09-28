@@ -1,20 +1,32 @@
 /* ---------------------------------------------------------------
-   Design tokens (locked)
+   Design tokens — Bugatti system (see Bugatti-design-analysis.md)
+   Trinity of proprietary faces substituted per the doc's own guidance:
+   Display -> Saira Condensed, Text Regular -> EB Garamond (serif),
+   Monospace -> JetBrains Mono.
 --------------------------------------------------------------- */
 :root {
-  --bg:      #CDCFC6;
-  --ink:     #171A18;
-  --accent:  #E06A16;
-  --steel:   #5C6560;
-  --line:    #B8BAB0;
-  --panel:   #262B28;
-  --panel-text: #EDEEEB;
+  --ink:            #ffffff;
+  --body:           #cccccc;
+  --body-strong:    #e6e6e6;
+  --muted:          #999999;
+  --muted-soft:     #666666;
+  --hairline:       #262626;
+  --hairline-strong:#3a3a3a;
+  --canvas:         #000000;
+  --surface-soft:   #0d0d0d;
+  --surface-card:   #141414;
+  --surface-elevated:#1f1f1f;
+  --on-primary:     #000000;
+  --link:           #c3d9f3;
 
-  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  --font-display: 'Saira Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-text:    'EB Garamond', Garamond, 'Times New Roman', serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', monospace;
 
-  --wrap: 1120px;
-  --gap: clamp(1.5rem, 4vw, 3rem);
+  --wrap: 1280px;
+  --section: 120px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ---------------------------------------------------------------
@@ -22,501 +34,511 @@
 --------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body, h1, h2, h3, p, dl, dd, ul, figure { margin: 0; }
+body, h1, h2, h3, p, dl, dd, dt, ul, li { margin: 0; }
 ul { padding: 0; list-style: none; }
 img { max-width: 100%; display: block; }
 button { font: inherit; color: inherit; background: none; border: 0; }
 a { color: inherit; text-decoration: none; }
 
 /* ---------------------------------------------------------------
-   Base
---------------------------------------------------------------- */
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.5;
-  min-height: 100vh;
-}
-
-h1, h2, h3 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-}
-
-h2 { font-size: clamp(1.6rem, 3.2vw, 2.25rem); }
-h3 { font-size: 1.05rem; font-weight: 500; }
-
-.body-text,
-.featured-copy p,
-.project-card p {
-  font-family: var(--font-display);
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: var(--ink);
-  max-width: 62ch;
-}
-
-.wrap {
-  max-width: var(--wrap);
-  margin-inline: auto;
-  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
-}
-
-section { padding-block: clamp(3.5rem, 9vw, 6.5rem); }
-
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--steel);
-  letter-spacing: 0.02em;
-  margin-bottom: 0.75rem;
-}
-
-/* ---------------------------------------------------------------
-   Accessibility
---------------------------------------------------------------- */
-.skip-link {
-  position: absolute;
-  left: 1rem;
-  top: -3rem;
-  background: var(--ink);
-  color: var(--panel-text);
-  padding: 0.6rem 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  border-radius: 4px;
-  z-index: 100;
-  transition: top 0.15s ease;
-}
-.skip-link:focus {
-  top: 1rem;
-}
-
-a:focus-visible,
-button:focus-visible,
-.skip-link:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-}
-
-/* ---------------------------------------------------------------
-   Scroll reveal
+   Scroll reveal — sections fade/lift in as they enter the viewport
+   (script.js toggles .is-visible via IntersectionObserver)
 --------------------------------------------------------------- */
 .reveal {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.001ms !important; }
+}
+
 /* ---------------------------------------------------------------
-   Header
+   Base — pure black canvas, no light mode
 --------------------------------------------------------------- */
-.site-header {
+body {
+  background: var(--canvas);
+  color: var(--body);
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5;
+}
+
+.g-wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ---------------------------------------------------------------
+   Accessibility
+--------------------------------------------------------------- */
+.g-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--ink);
+  color: var(--on-primary);
+  padding: 0.6rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  border-radius: 9999px;
+  z-index: 100;
+  transition: top 0.2s ease;
+}
+.g-skip-link:focus { top: 1rem; }
+
+a:focus-visible,
+button:focus-visible,
+.g-skip-link:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------
+   Top nav — transparent, MENU / wordmark / CONTACT
+--------------------------------------------------------------- */
+.g-nav {
   position: sticky;
   top: 0;
-  z-index: 20;
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--line);
+  z-index: 30;
+  background: transparent;
+  height: 56px;
 }
 
-.header-inner {
-  display: flex;
+.g-nav-inner {
+  height: 56px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  padding-block: 1rem;
 }
 
-.logo {
+.g-nav-label {
   font-family: var(--font-mono);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
+.g-nav-label:hover { color: var(--link); }
 
-.site-nav {
-  display: flex;
-  gap: clamp(1rem, 3vw, 2rem);
-  font-family: var(--font-mono);
+.g-nav-label--left { justify-self: start; }
+.g-nav-label--right { justify-self: end; }
+
+.g-wordmark {
+  justify-self: center;
+  font-family: var(--font-display);
   font-size: 0.875rem;
-}
-
-.site-nav a {
-  padding-block: 0.25rem;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-
-.site-nav a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+  font-weight: 400;
+  letter-spacing: 0.43em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
 /* ---------------------------------------------------------------
-   Buttons
+   Buttons — transparent pill, 1px white outline; the ONLY
+   rounded element in the system besides icon buttons
 --------------------------------------------------------------- */
-.btn {
+.g-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  height: 44px;
+  padding: 14px 32px;
+  border-radius: 9999px;
+  border: 1px solid var(--ink);
+  background: transparent;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.75rem 1.375rem;
-  border-radius: 4px;
-  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
+.g-btn:hover { background: rgba(255, 255, 255, 0.08); }
 
-.btn-primary {
-  background: var(--ink);
-  color: var(--panel-text);
-  border-color: var(--ink);
-}
-.btn-primary:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--ink);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--ink);
-}
-.btn-secondary:hover {
-  background: var(--ink);
-  color: var(--panel-text);
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--steel);
-  border-color: var(--line);
-}
-.btn-ghost[disabled] {
+.g-btn-disabled {
+  border-color: var(--hairline-strong);
+  color: var(--muted);
   cursor: not-allowed;
-  opacity: 0.75;
+}
+.g-btn-disabled:hover { background: transparent; }
+
+.g-text-link {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  color: var(--link);
+  text-decoration: underline;
+}
+
+.g-caption-link {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 /* ---------------------------------------------------------------
-   Panel (signature stat card)
+   Hero — pure black, uppercase display-xl, generous rhythm
 --------------------------------------------------------------- */
-.panel {
-  background: var(--panel);
-  color: var(--panel-text);
-  border-radius: 8px;
-  padding: 1.5rem;
+.g-hero { padding-block: 96px; }
+
+.g-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 4rem); /* 32px mobile -> 64px desktop */
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  max-width: 22ch;
 }
 
-.panel-title {
+.g-hero > .g-wrap > .g-caption-link { display: block; margin-bottom: 1rem; }
+
+.g-hero-caption {
+  margin-top: 1.5rem;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  color: color-mix(in srgb, var(--panel-text) 55%, transparent);
-  margin-bottom: 1.125rem;
-  padding-bottom: 0.875rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--panel-text) 18%, transparent);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  max-width: 46ch;
 }
 
-.stat-list {
+.g-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+/* career-callout-card, repurposed as a small floating pitch card */
+.g-callout-card {
+  position: relative;
+  background: var(--surface-card);
+  border-radius: 0;
+  padding: 16px;
+  max-width: 320px;
+  margin-top: 4rem;
+}
+.g-callout-body { font-family: var(--font-text); font-size: 0.875rem; color: var(--body-strong); }
+.g-callout-link { display: inline-block; margin-top: 0.6rem; }
+
+/* spec-cell — used for the hero + featured stat rows */
+.g-spec-row {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.g-spec-cell { padding-top: 1.5rem; border-top: 1px solid var(--hairline); }
+.g-spec-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.g-spec-label {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* highlight-card — elevates a project's stat row + key finding out of the
+   flat page, borrowed from the default theme's "Project Highlights" card
+   but kept dark/bordered instead of switching to a white surface */
+.g-highlight-card {
+  margin-top: 3rem;
+  padding: 1.75rem;
+  background: var(--surface-elevated);
+  border: 1px solid var(--hairline-strong);
+}
+.g-highlight-card .g-spec-row { margin-top: 0; }
+.g-highlight-card .g-spec-cell { border-top: none; padding-top: 0; }
+.g-highlight-note {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-text);
+  font-size: 0.9375rem;
+  color: var(--body-strong);
+}
+.g-highlight-note strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------------
+   Section rhythm — 120px, the whitespace IS the brand
+--------------------------------------------------------------- */
+.g-section { padding-block: var(--section); }
+
+.g-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 3rem); /* 48px */
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 2rem;
+}
+
+.g-body {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--body);
+  max-width: 66ch;
+}
+
+/* ---------------------------------------------------------------
+   About — two-column: bio + quiet education/experience lockups
+   (reuses .g-feature-grid for the column split)
+--------------------------------------------------------------- */
+.g-about-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.g-about-block .g-card-meta { display: block; margin-bottom: 0.85rem; }
+
+.g-credential-list {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
 }
 
-.stat-row {
+.g-credential {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
 }
 
-.stat-key {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: color-mix(in srgb, var(--panel-text) 65%, transparent);
+.g-credential-logo {
+  height: 24px;
+  width: auto;
+  max-width: 84px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
-.stat-value {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--accent);
-  text-align: right;
+.g-credential-name {
+  font-family: var(--font-text);
+  font-size: 0.9375rem;
+  color: var(--body);
 }
 
 /* ---------------------------------------------------------------
-   Hero
+   Featured project — hero-photo-band scale, no card surface
 --------------------------------------------------------------- */
-.hero {
-  padding-top: clamp(3rem, 8vw, 5rem);
-}
-
-.hero-inner {
+.g-feature-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(2.5rem, 6vw, 4rem);
-  align-items: center;
+  gap: 2.5rem;
+  align-items: start;
 }
 
-.hero-headline {
-  font-size: clamp(2.25rem, 6vw, 3.75rem);
-  margin-block: 1rem 1.25rem;
+.g-feature-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem); /* 32px */
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+  max-width: 22ch;
+  margin-bottom: 1.5rem;
 }
 
-.accent-text { color: var(--accent); }
+.g-feature-copy p { color: var(--body); }
+.g-feature-copy p + p { margin-top: 1rem; }
 
-.hero-subtext {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  color: var(--steel);
-  line-height: 1.6;
-  max-width: 46ch;
-}
-
-.hero-actions {
+.g-feature-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 2rem;
 }
 
-/* ---------------------------------------------------------------
-   About
---------------------------------------------------------------- */
-.about h2 { margin-bottom: 1.5rem; }
-
-/* ---------------------------------------------------------------
-   Featured project
---------------------------------------------------------------- */
-.featured-project h2 {
-  margin-block: 0.25rem 1rem;
-  max-width: 20ch;
+.g-feature-note {
+  margin-top: 1.5rem;
+  font-family: var(--font-text);
+  font-size: 0.9375rem;
+  color: var(--muted);
 }
 
-.lede {
+.g-feature-media { background: var(--canvas); }
+.g-feature-media img { width: 100%; }
+
+/* ---------------------------------------------------------------
+   Model-photo-card — Other Projects: photo directly on canvas
+--------------------------------------------------------------- */
+.g-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.g-card { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.g-card-media { aspect-ratio: 16 / 9; background: var(--surface-soft); overflow: hidden; }
+.g-card-media img { width: 100%; height: 100%; object-fit: cover; }
+.g-card-media--placeholder { display: flex; align-items: flex-start; padding: 1rem; }
+
+.g-card-title {
+  margin-top: 0.75rem;
   font-family: var(--font-display);
-  font-size: 1.1875rem;
-  color: var(--steel);
-  max-width: 58ch;
-  margin-bottom: 2.5rem;
-}
-
-.featured-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(2rem, 5vw, 3rem);
-  align-items: start;
-}
-
-.featured-copy p + p { margin-top: 1.25rem; }
-
-.project-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.75rem;
-}
-
-.screenshot-placeholder {
-  margin-top: clamp(2.5rem, 6vw, 3.5rem);
-  border: 1px dashed var(--steel);
-  border-radius: 8px;
-  min-height: clamp(220px, 32vw, 420px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: color-mix(in srgb, var(--panel) 6%, transparent);
-}
-
-.screenshot-label {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--steel);
-}
-
-/* ---------------------------------------------------------------
-   Other projects
---------------------------------------------------------------- */
-.other-projects {
-  margin-top: clamp(4.5rem, 10vw, 7rem);
-  padding-top: clamp(3rem, 7vw, 4.5rem);
-  border-top: 1px solid var(--line);
-}
-
-.other-projects h2 { margin-bottom: 2rem; }
-
-.project-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.project-card {
-  flex: 1 1 300px;
-  max-width: 380px;
-  background: color-mix(in srgb, var(--panel) 4%, transparent);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.project-card h3 { margin-top: 0.25rem; }
-
-.project-card-meta {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  color: var(--steel);
-}
-
-.project-card p:not(.project-card-meta) {
-  font-size: 0.975rem;
-  line-height: 1.6;
-}
-
-.project-card .btn { align-self: flex-start; margin-top: 0.5rem; }
-
-.project-card-tag {
-  align-self: flex-start;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  padding: 0.25rem 0.75rem;
-}
-
-/* ---------------------------------------------------------------
-   Skills
---------------------------------------------------------------- */
-.skills h2 { margin-bottom: 2rem; }
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.skill-group {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 1.5rem;
-}
-
-.skill-group h3 { margin-bottom: 1rem; }
-
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.skill-tags li {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.35rem 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   color: var(--ink);
 }
 
-/* ---------------------------------------------------------------
-   Footer
---------------------------------------------------------------- */
-.site-footer {
-  border-top: 1px solid var(--line);
-  padding-block: clamp(2.5rem, 6vw, 4rem);
+.g-card-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-.footer-inner {
+.g-card-desc {
+  font-family: var(--font-text);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--body);
+}
+
+.g-card-stats {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
+.g-card-stats strong { color: var(--ink); }
 
-.contact-list {
+.g-card-links { margin-top: 0.4rem; }
+
+/* ---------------------------------------------------------------
+   Skills — career-listing-row pattern
+--------------------------------------------------------------- */
+.g-skill-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 24px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.g-skill-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.g-skill-list { display: flex; flex-wrap: wrap; }
+.g-skill-list li {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.g-skill-list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--hairline-strong); }
+
+/* ---------------------------------------------------------------
+   CTA + Footer
+--------------------------------------------------------------- */
+.g-cta { padding-block: 80px; text-align: center; }
+.g-cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  max-width: 24ch;
+  margin-inline: auto;
+}
+.g-cta-sub {
+  margin-top: 0.75rem;
+  font-family: var(--font-text);
+  font-size: 1rem;
+  color: var(--muted);
+}
+.g-cta .g-btn { margin-top: 2rem; }
+
+.g-footer { background: var(--canvas); padding-block: 64px; text-align: center; }
+.g-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem 1.75rem;
   font-family: var(--font-mono);
-  font-size: 0.9375rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.g-footer-links a { color: var(--muted); transition: color 0.2s ease; }
+.g-footer-links a:hover { color: var(--ink); }
+
+.g-footer-wordmark {
+  margin-top: 2.5rem;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  letter-spacing: 0.43em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
-.contact-list a {
-  border-bottom: 1px solid var(--line);
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-.contact-list a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.contact-location { color: var(--steel); }
-
-.footer-line {
-  font-family: var(--font-mono);
+.g-footer-fine {
+  margin-top: 1rem;
+  font-family: var(--font-text);
   font-size: 0.8125rem;
-  color: var(--steel);
+  color: var(--muted-soft);
 }
 
 /* ---------------------------------------------------------------
    Breakpoints
 --------------------------------------------------------------- */
-@media (min-width: 640px) {
-  .stat-row { flex-wrap: nowrap; }
-  .stat-key::after {
-    content: '';
-    flex: 1;
-    margin-inline: 0.75rem;
-    border-bottom: 1px dotted var(--line);
-    transform: translateY(-4px);
-    display: inline-block;
-    min-width: 1.5rem;
-  }
-}
+@media (min-width: 1024px) { .g-feature-grid { grid-template-columns: 1.3fr 1fr; } }
 
-@media (min-width: 860px) {
-  .hero-inner {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
-
-  .featured-grid {
-    grid-template-columns: 1.4fr 1fr;
-  }
-
-  .footer-inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-@media (max-width: 480px) {
-  .site-nav { gap: 1rem; font-size: 0.8125rem; }
-  .hero-actions .btn { flex: 1 1 auto; text-align: center; }
+@media (max-width: 767px) {
+  .g-cards-grid { grid-template-columns: 1fr; }
+  .g-hero-actions .g-btn, .g-feature-actions .g-btn { width: 100%; }
+  .g-callout-card { display: none; }
+  .g-spec-row { flex-wrap: wrap; gap: 1.5rem; }
+  .g-skill-row { flex-direction: column; gap: 0.5rem; }
 }

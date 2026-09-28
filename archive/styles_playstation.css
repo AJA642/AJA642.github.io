@@ -1,0 +1,623 @@
+/* ---------------------------------------------------------------
+   Design tokens — PlayStation system (see PlayStation-design-analysis.md)
+--------------------------------------------------------------- */
+:root {
+  --primary:          #0070d1;
+  --primary-pressed:  #0064b7;
+  --primary-active:   #004d8d;
+  --on-primary:       #ffffff;
+  --link-light:       #0064b7;
+  --link-dark:        #53b1ff;
+
+  --ink:              #000000;
+  --ink-deep:         #121314;
+  --ink-elevated:     #181818;
+  --charcoal:         #1f2024;
+  --body-light:       rgba(0, 0, 0, 0.6);
+  --mute-light:       #6b6b6b;
+  --ash-light:        #cccccc;
+  --body-dark:        rgba(255, 255, 255, 0.7);
+  --mute-dark:        rgba(229, 229, 229, 0.55);
+  --ash-dark:         rgba(229, 229, 229, 0.2);
+
+  --canvas-light:         #ffffff;
+  --surface-soft:         #f3f3f3;
+  --surface-card:         #f5f7fa;
+  --surface-filter:       rgba(245, 247, 250, 0.3);
+  --canvas-dark:          #000000;
+  --surface-dark-elevated:#121314;
+  --surface-dark-card:    #181818;
+  --hairline-light:       #f3f3f3;
+  --hairline-dark:        rgba(229, 229, 229, 0.2);
+  --on-dark:              #ffffff;
+  --on-dark-mute:         #cccccc;
+
+  --gold-start: #ffce21;
+  --gold-mid:   #f5a623;
+  --gold-end:   #ee8e00;
+
+  --font-display: 'Roboto', system-ui, -apple-system, Arial, Helvetica, sans-serif;
+  --font: 'Inter', system-ui, -apple-system, Arial, Helvetica, sans-serif;
+
+  --xxs: 4px; --xs: 8px; --sm: 12px; --md: 16px; --lg: 24px; --xl: 32px; --xxl: 48px; --section: 96px;
+  --wrap: 1280px;
+}
+
+/* ---------------------------------------------------------------
+   Reset
+--------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, p, dl, dd, dt, ul, li { margin: 0; }
+ul { padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; }
+a { color: inherit; text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.001ms !important; }
+}
+
+/* ---------------------------------------------------------------
+   Base
+--------------------------------------------------------------- */
+body {
+  background: var(--canvas-light);
+  color: var(--body-light);
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 1.125rem; /* 18px, body-md */
+  line-height: 1.5;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 300; }
+
+.p-wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ---------------------------------------------------------------
+   Accessibility
+--------------------------------------------------------------- */
+.p-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  z-index: 100;
+  transition: top 0.15s ease;
+}
+.p-skip-link:focus { top: 1rem; }
+
+a:focus-visible,
+button:focus-visible,
+.p-skip-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------
+   Primary nav — dark canvas, flat, 48px
+--------------------------------------------------------------- */
+.p-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--canvas-dark);
+  height: 48px;
+}
+
+.p-nav-inner {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--md);
+}
+
+.p-logo {
+  font-family: var(--font);
+  font-size: 1.125rem;   /* 18px, body-strong */
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: var(--on-dark);
+}
+
+.p-nav-links {
+  display: flex;
+  gap: var(--lg);
+}
+
+.p-nav-links a {
+  font-family: var(--font);
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: var(--on-dark);
+  transition: color 0.15s ease;
+}
+.p-nav-links a:hover, .p-nav-links a:focus-visible { color: var(--link-dark); }
+
+/* ---------------------------------------------------------------
+   Buttons — full pill, weight 700 button type
+--------------------------------------------------------------- */
+.p-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  font-family: var(--font);
+  font-size: 1.125rem;   /* 18px */
+  font-weight: 700;
+  letter-spacing: 0.45px;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.p-btn:active { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16); }
+
+.p-btn-primary { background: var(--primary); color: var(--on-primary); }
+.p-btn-primary:hover, .p-btn-primary:active { background: var(--primary-pressed); }
+
+.p-btn-secondary-light {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ash-light);
+}
+.p-btn-secondary-light:hover { background: rgba(0, 0, 0, 0.04); }
+
+.p-btn-secondary-dark {
+  background: transparent;
+  color: var(--on-dark);
+  border-color: var(--hairline-dark);
+}
+.p-btn-secondary-dark:hover { background: rgba(255, 255, 255, 0.08); }
+
+.p-btn-disabled {
+  background: var(--surface-soft);
+  color: var(--ash-light);
+  cursor: not-allowed;
+}
+.p-btn-disabled:hover, .p-btn-disabled:active { background: var(--surface-soft); box-shadow: none; }
+
+.p-link {
+  font-family: var(--font);
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--link-light);
+}
+.p-link:hover { text-decoration: underline; }
+
+/* muted, non-interactive "coming soon" links inside dark tiles */
+.p-link-mute {
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--on-dark-mute);
+  cursor: not-allowed;
+}
+
+.p-badge {
+  display: inline-flex;
+  align-items: center;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--font);
+  font-size: 0.75rem;   /* 12px */
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+/* ---------------------------------------------------------------
+   Hero band — dark, full-bleed, display-xl at weight 300
+--------------------------------------------------------------- */
+.p-hero {
+  background: var(--canvas-dark);
+  color: var(--on-dark);
+  padding-block: var(--section);
+}
+
+.p-hero-label {
+  font-family: var(--font);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--link-dark);
+  margin-bottom: var(--md);
+}
+
+.p-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 6vw, 3.375rem); /* 28px mobile -> 54px desktop */
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.1px;
+  color: var(--on-dark);
+  max-width: 18ch;
+}
+
+.p-hero-subtitle {
+  margin-top: var(--md);
+  font-family: var(--font);
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1.5;
+  color: var(--body-dark);
+  max-width: 46ch;
+}
+
+.p-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--md);
+  margin-top: var(--xl);
+}
+
+.p-stat-row {
+  display: flex;
+  gap: var(--xxl);
+  margin-top: var(--xxl);
+  padding-top: var(--lg);
+  border-top: 1px solid var(--hairline-dark);
+}
+
+.p-stat-value {
+  display: block;
+  font-family: var(--font);
+  font-size: 1.125rem; /* heading-md, 18px */
+  font-weight: 600;
+  color: var(--on-dark);
+}
+
+.p-stat-label {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font);
+  font-size: 0.875rem; /* caption-md, 14px */
+  font-weight: 400;
+  color: var(--mute-dark);
+}
+
+/* ---------------------------------------------------------------
+   Section rhythm — 96px, band color IS the divider
+--------------------------------------------------------------- */
+.p-section { padding-block: var(--section); background: var(--canvas-light); color: var(--ink); }
+.p-section--dark { background: var(--canvas-dark); color: var(--on-dark); }
+
+.p-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.75rem); /* 35 -> 44px */
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: var(--lg);
+}
+
+.p-body {
+  font-family: var(--font);
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1.5;
+  color: var(--body-light);
+  max-width: 62ch;
+}
+.p-section--dark .p-body { color: var(--body-dark); }
+
+/* ---------------------------------------------------------------
+   About — two-column: bio + quiet education/experience lockups
+--------------------------------------------------------------- */
+.p-about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--xl);
+  align-items: start;
+}
+
+.p-about-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lg);
+}
+
+.p-about-block .p-skill-title { margin-bottom: var(--sm); }
+
+.p-credential-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md);
+}
+
+.p-credential {
+  display: flex;
+  align-items: center;
+  gap: var(--sm);
+}
+
+.p-credential-logo {
+  height: 26px;
+  width: auto;
+  max-width: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.p-credential-name {
+  font-family: var(--font);
+  font-size: 0.9375rem;
+  color: var(--body-light);
+}
+
+@media (min-width: 1024px) {
+  .p-about-grid { grid-template-columns: 1.3fr 1fr; }
+}
+
+/* ---------------------------------------------------------------
+   PS Plus banner — repurposed as the single flagship callout,
+   the one place the gold accent bar is allowed to appear
+--------------------------------------------------------------- */
+.p-tier-banner {
+  background: var(--surface-dark-elevated);
+  color: var(--on-dark);
+  border-radius: 8px;
+  padding: var(--xxl) var(--xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.p-tier-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--gold-start), var(--gold-mid), var(--gold-end));
+}
+
+.p-tier-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--xl);
+  align-items: start;
+}
+
+.p-tier-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem; /* heading-xl, 28px */
+  font-weight: 300;
+  letter-spacing: 0.1px;
+  line-height: 1.25;
+  max-width: 22ch;
+  margin-bottom: var(--md);
+}
+
+.p-tier-copy p { color: var(--body-dark); }
+.p-tier-copy p + p { margin-top: var(--sm); }
+
+.p-tier-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--md);
+  margin-top: var(--lg);
+}
+
+.p-tier-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lg) var(--xl);
+  margin-top: var(--lg);
+  padding-top: var(--md);
+  border-top: 1px solid var(--hairline-dark);
+}
+.p-tier-stats .p-stat-value { color: var(--on-dark); }
+.p-tier-stats .p-stat-label { color: var(--mute-dark); }
+
+.p-tier-note {
+  margin-top: var(--md);
+  font-size: 1rem;
+  color: var(--body-dark);
+}
+
+.p-tier-media { border-radius: 8px; overflow: hidden; background: var(--canvas-light); }
+.p-tier-media img { width: 100%; }
+
+/* ---------------------------------------------------------------
+   Game tiles — dark rail, "Other Projects"
+--------------------------------------------------------------- */
+.p-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--lg);
+}
+
+.p-tile {
+  background: var(--surface-dark-elevated);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-tile-media {
+  aspect-ratio: 16 / 9;
+  background: var(--canvas-light);
+  position: relative;
+}
+.p-tile-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.p-tile-media--placeholder {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--md);
+  background: var(--surface-dark-card);
+}
+
+.p-tile-body { padding: var(--lg); display: flex; flex-direction: column; gap: 0.4rem; }
+
+.p-tile-title {
+  font-family: var(--font);
+  font-size: 1.125rem; /* heading-md, 18px */
+  font-weight: 600;
+  color: var(--on-dark);
+}
+
+.p-tile-meta {
+  font-family: var(--font);
+  font-size: 0.875rem; /* caption-md */
+  color: var(--mute-dark);
+}
+
+.p-tile-desc {
+  font-family: var(--font);
+  font-size: 1rem; /* body-sm, 16px */
+  line-height: 1.5;
+  color: var(--body-dark);
+}
+
+.p-tile-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-family: var(--font);
+  font-size: 0.875rem;
+  color: var(--mute-dark);
+}
+.p-tile-stats strong { color: var(--on-dark); font-weight: 600; }
+
+.p-tile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+}
+
+/* ---------------------------------------------------------------
+   Skills — feature-card, light canvas
+--------------------------------------------------------------- */
+.p-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--lg);
+}
+
+.p-feature-card {
+  background: var(--canvas-light);
+  border: 1px solid var(--hairline-light);
+  border-radius: 8px;
+  padding: var(--xl);
+}
+
+.p-skill-title {
+  font-family: var(--font);
+  font-size: 1.125rem; /* heading-md */
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--sm);
+}
+
+.p-skill-list { display: flex; flex-wrap: wrap; }
+.p-skill-list li { font-family: var(--font); font-size: 1rem; color: var(--body-light); }
+.p-skill-list li:not(:last-child)::after {
+  content: '·';
+  color: var(--ash-light);
+  margin: 0 0.5rem;
+}
+
+/* ---------------------------------------------------------------
+   Closing dark band — "ON PLAYSTATION"-style top-to-bottom dim
+--------------------------------------------------------------- */
+.p-closing {
+  background: linear-gradient(180deg, var(--surface-dark-elevated), var(--canvas-dark));
+  color: var(--on-dark);
+  padding-block: var(--section);
+  text-align: center;
+}
+
+.p-closing-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 1.75rem);
+  font-weight: 300;
+  letter-spacing: 0.1px;
+  max-width: 24ch;
+  margin-inline: auto;
+}
+
+.p-closing-sub {
+  margin-top: var(--sm);
+  font-size: 1.125rem;
+  color: var(--body-dark);
+}
+
+.p-closing .p-btn { margin-top: var(--xl); }
+
+/* ---------------------------------------------------------------
+   Footer — PlayStation Blue, the "we're done" anchor
+--------------------------------------------------------------- */
+.p-footer {
+  background: var(--primary);
+  color: var(--on-primary);
+  padding-block: var(--xxl);
+}
+
+.p-footer-wordmark {
+  font-family: var(--font);
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  margin-bottom: var(--lg);
+}
+
+.p-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem var(--lg);
+  font-family: var(--font);
+  font-size: 0.875rem; /* caption-md */
+}
+
+.p-footer-links a { color: var(--on-primary); }
+.p-footer-links a:hover { text-decoration: underline; }
+
+.p-footer-location { color: rgba(255, 255, 255, 0.75); }
+
+.p-footer-fine {
+  margin-top: var(--lg);
+  font-family: var(--font);
+  font-size: 0.75rem; /* caption-sm */
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ---------------------------------------------------------------
+   Breakpoints
+--------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .p-tier-grid { grid-template-columns: 1.3fr 1fr; }
+}
+
+@media (max-width: 1023px) {
+  .p-tiles-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 767px) {
+  .p-nav-links { display: none; }
+  .p-tiles-grid { grid-template-columns: repeat(2, 1fr); }
+  .p-hero-actions .p-btn,
+  .p-tier-actions .p-btn { width: 100%; }
+  .p-stat-row { flex-wrap: wrap; gap: var(--lg); }
+}
+
+@media (max-width: 480px) {
+  .p-tiles-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,577 @@
+/* ---------------------------------------------------------------
+   Design tokens — BMW corporate system (see BMW-design-analysis.md)
+--------------------------------------------------------------- */
+:root {
+  --primary:            #1c69d4;
+  --primary-active:     #0653b6;
+  --primary-disabled:   #d6d6d6;
+  --ink:                #262626;
+  --body:               #3c3c3c;
+  --body-strong:        #1a1a1a;
+  --muted:              #6b6b6b;
+  --muted-soft:         #9a9a9a;
+  --hairline:           #e6e6e6;
+  --hairline-strong:    #cccccc;
+  --canvas:             #ffffff;
+  --surface-soft:       #f7f7f7;
+  --surface-card:       #fafafa;
+  --surface-strong:     #ebebeb;
+  --surface-dark:       #1a2129;
+  --surface-dark-elevated: #262e38;
+  --on-primary:         #ffffff;
+  --on-dark:            #ffffff;
+  --on-dark-soft:       #bbbbbb;
+  --m-blue-light:       #0066b1;
+  --m-blue-dark:        #1c69d4;
+  --m-red:              #e22718;
+
+  --font: 'Inter', 'BMW Type Next Latin', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --xxs: 4px; --xs: 8px; --sm: 12px; --md: 16px; --lg: 24px; --xl: 32px; --xxl: 48px; --section: 80px;
+  --wrap: 1440px;
+}
+
+/* ---------------------------------------------------------------
+   Reset
+--------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, p, dl, dd, dt, ul, li { margin: 0; }
+ul { padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; }
+a { color: inherit; text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.001ms !important; }
+}
+
+/* ---------------------------------------------------------------
+   Base — 700 display against 300 body is the signature contrast
+--------------------------------------------------------------- */
+body {
+  background: var(--canvas);
+  color: var(--body);
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 1rem;      /* 16px */
+  line-height: 1.55;
+}
+
+h1, h2, h3 { font-weight: 700; color: var(--ink); }
+
+.b-wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ---------------------------------------------------------------
+   Accessibility
+--------------------------------------------------------------- */
+.b-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--ink);
+  color: var(--canvas);
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  z-index: 100;
+  transition: top 0.15s ease;
+}
+.b-skip-link:focus { top: 1rem; }
+
+a:focus-visible,
+button:focus-visible,
+.b-skip-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------
+   Top navigation — flat white, 64px, no shadow, no border
+--------------------------------------------------------------- */
+.b-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--canvas);
+  height: 64px;
+}
+
+.b-nav-inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--md);
+}
+
+.b-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.b-logo-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.b-nav-links {
+  display: flex;
+  gap: var(--lg);
+}
+
+.b-nav-links a {
+  font-size: 0.875rem;   /* 14px */
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: var(--ink);
+  padding-block: 0.4rem;
+  transition: color 0.15s ease;
+}
+.b-nav-links a:hover,
+.b-nav-links a:focus-visible { color: var(--primary); }
+
+/* ---------------------------------------------------------------
+   Buttons — rectangular, 0px radius everywhere
+--------------------------------------------------------------- */
+.b-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 14px 32px;
+  border-radius: 0;
+  border: 1px solid transparent;
+  font-family: var(--font);
+  font-size: 0.875rem;   /* 14px */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.b-btn-primary { background: var(--primary); color: var(--on-primary); }
+.b-btn-primary:hover, .b-btn-primary:active { background: var(--primary-active); }
+
+.b-btn-primary[disabled] {
+  background: var(--primary-disabled);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.b-btn-secondary {
+  background: var(--canvas);
+  color: var(--ink);
+  border-color: var(--hairline-strong);
+  padding: 13px 31px;
+}
+.b-btn-secondary:hover, .b-btn-secondary:active { background: var(--surface-soft); }
+
+.b-btn-secondary-on-dark {
+  background: transparent;
+  color: var(--on-dark);
+  border-color: var(--on-dark);
+  padding: 13px 31px;
+}
+.b-btn-secondary-on-dark:hover, .b-btn-secondary-on-dark:active { background: rgba(255, 255, 255, 0.1); }
+
+/* Uppercase, letter-spaced inline link — "LEARN MORE ›" */
+.b-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8125rem;  /* 13px */
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color 0.15s ease;
+}
+.b-text-link:hover, .b-text-link:focus-visible { color: var(--primary); }
+
+.b-text-link[aria-disabled="true"] {
+  color: var(--muted-soft);
+  cursor: not-allowed;
+}
+.b-text-link[aria-disabled="true"]:hover { color: var(--muted-soft); }
+
+/* ---------------------------------------------------------------
+   Hero band — dark navy, full-width, one dark band on the page
+--------------------------------------------------------------- */
+.b-hero {
+  background: var(--surface-dark);
+  color: var(--on-dark);
+  padding-block: var(--section);
+}
+
+.b-hero-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: var(--md);
+}
+
+.b-hero-title {
+  font-size: clamp(2.5rem, 6vw, 4rem); /* 40px mobile -> 64px desktop */
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--on-dark);
+  max-width: 18ch;
+}
+
+.b-hero-subtitle {
+  margin-top: var(--md);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--on-dark-soft);
+  max-width: 50ch;
+}
+
+.b-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--md);
+  margin-top: var(--xl);
+}
+
+.b-spec-row {
+  display: flex;
+  gap: var(--xxl);
+  margin-top: var(--xxl);
+  padding-top: var(--lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.b-spec-cell { padding: 0; }
+
+.b-spec-value {
+  display: block;
+  font-size: 1.5rem;   /* 24px, display-sm */
+  font-weight: 700;
+  color: var(--on-dark);
+  line-height: 1.25;
+}
+
+.b-spec-label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;  /* 12px */
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--on-dark-soft);
+}
+
+.b-spec-row--light { border-top-color: var(--hairline); }
+.b-spec-row--light .b-spec-value { color: var(--ink); }
+.b-spec-row--light .b-spec-label { color: var(--muted); }
+
+/* ---------------------------------------------------------------
+   Section rhythm — 80px, light canvas by default
+--------------------------------------------------------------- */
+.b-section { padding-block: var(--section); }
+
+.b-section-title {
+  font-size: clamp(1.75rem, 4vw, 3rem); /* 32 -> 48px */
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: var(--lg);
+}
+
+.b-body {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--body);
+  max-width: 64ch;
+}
+
+/* ---------------------------------------------------------------
+   About — two-column: bio + quiet education/experience lockups
+--------------------------------------------------------------- */
+.b-about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--xxl);
+  align-items: start;
+}
+
+.b-about-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--xl);
+}
+
+.b-about-block .b-skill-title { margin-bottom: var(--sm); }
+
+.b-credential-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md);
+}
+
+.b-credential {
+  display: flex;
+  align-items: center;
+  gap: var(--sm);
+}
+
+.b-credential-logo {
+  height: 26px;
+  width: auto;
+  max-width: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.b-credential-name {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: var(--body);
+}
+
+@media (min-width: 1024px) {
+  .b-about-grid { grid-template-columns: 1.3fr 1fr; }
+}
+
+/* ---------------------------------------------------------------
+   Featured project — hero-photo-band: light canvas showcase
+--------------------------------------------------------------- */
+.b-featured-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--xxl);
+  align-items: start;
+}
+
+.b-featured-name {
+  font-size: clamp(1.5rem, 3vw, 2rem); /* display-md, 32px */
+  font-weight: 700;
+  color: var(--ink);
+  max-width: 22ch;
+  margin-bottom: var(--md);
+}
+
+.b-featured-copy p { color: var(--body); font-weight: 300; }
+.b-featured-copy p + p { margin-top: var(--md); }
+
+.b-featured-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--md);
+  margin-top: var(--lg);
+}
+
+.b-featured-media {
+  background: var(--surface-card);
+  overflow: hidden;
+}
+.b-featured-media img { width: 100%; }
+
+.b-featured-note {
+  margin-top: var(--lg);
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------------
+   Model card grid — 4-up, image plate + title + tagline + links
+--------------------------------------------------------------- */
+.b-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--lg);
+}
+
+.b-model-card {
+  background: var(--canvas);
+  padding: var(--lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.b-model-photo {
+  aspect-ratio: 16 / 10;
+  background: var(--surface-card);
+  overflow: hidden;
+  margin: calc(var(--lg) * -1) calc(var(--lg) * -1) 0;
+}
+.b-model-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.b-model-photo--placeholder {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--md);
+}
+
+.b-model-tag {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.b-model-title {
+  margin-top: var(--lg);
+  font-size: 1.125rem;  /* 18px */
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.b-model-tagline {
+  margin-top: 0.35rem;
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 300;
+  color: var(--muted);
+}
+
+.b-model-desc {
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--body);
+}
+
+.b-model-specs {
+  margin-top: var(--sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;   /* caption */
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+.b-model-specs strong { color: var(--ink); font-weight: 700; }
+
+.b-model-links {
+  margin-top: var(--md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* ---------------------------------------------------------------
+   Skills
+--------------------------------------------------------------- */
+.b-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--xl);
+}
+
+.b-skill-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--sm);
+}
+
+.b-skill-list { display: flex; flex-wrap: wrap; }
+.b-skill-list li { font-size: 1rem; font-weight: 300; color: var(--body); }
+.b-skill-list li:not(:last-child)::after {
+  content: '·';
+  color: var(--hairline-strong);
+  margin: 0 0.5rem;
+}
+
+/* ---------------------------------------------------------------
+   CTA band — dark, pre-footer
+--------------------------------------------------------------- */
+.b-cta {
+  background: var(--surface-dark);
+  color: var(--on-dark);
+  padding-block: var(--section);
+  text-align: center;
+}
+
+.b-cta-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--on-dark);
+  max-width: 22ch;
+  margin-inline: auto;
+}
+
+.b-cta-sub {
+  margin-top: var(--sm);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--on-dark-soft);
+}
+
+.b-cta .b-btn { margin-top: var(--xl); }
+
+/* ---------------------------------------------------------------
+   Footer — soft grey, plain links
+--------------------------------------------------------------- */
+.b-footer {
+  background: var(--surface-soft);
+  color: var(--body);
+  padding-block: 64px;
+}
+
+.b-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem var(--lg);
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.b-footer-links a { color: var(--body); transition: color 0.15s ease; }
+.b-footer-links a:hover { color: var(--primary); }
+
+.b-footer-location { color: var(--muted); }
+
+.b-footer-line {
+  margin-top: var(--lg);
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------------
+   Breakpoints
+--------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .b-featured-grid { grid-template-columns: 1.3fr 1fr; }
+}
+
+@media (max-width: 1023px) {
+  .b-projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 767px) {
+  .b-nav-links { display: none; }
+  .b-projects-grid { grid-template-columns: 1fr; }
+  .b-hero-actions .b-btn,
+  .b-featured-actions .b-btn { width: 100%; }
+  .b-spec-row { flex-wrap: wrap; gap: var(--lg); }
+  .b-footer-links { flex-direction: column; gap: var(--sm); }
+}
