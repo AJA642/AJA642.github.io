@@ -34,11 +34,11 @@
    Reset
 --------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-}
+/* scroll-behavior stays "auto": in-page anchor scrolling is animated by
+   script.js instead, so its duration/easing is actually controllable
+   (native CSS smooth-scroll has no duration knob and fights a JS-driven
+   scroll if both are active on the same scrollTo calls). */
+html { -webkit-text-size-adjust: 100%; }
 
 #about, #skills, #featured, #projects { scroll-margin-top: 56px; }
 body, h1, h2, h3, p, dl, dd, dt, ul, li { margin: 0; }
@@ -110,23 +110,27 @@ button:focus-visible,
 }
 
 /* ---------------------------------------------------------------
-   Top nav — MENU / wordmark / CONTACT
-   Sticky, with a full opaque black bar behind it so scrolled
-   content never shows through or overlaps the nav text.
+   Top nav — wordmark / Skills / Contact
+   The bar itself is always present. Its left slot starts empty on
+   the landing view; the hero's "Ashish Abraham" line lives there
+   instead. Once that line scrolls up and out from behind the nav's
+   reserved space, the nav's own wordmark fades in on the left —
+   reversed on scroll back up. See the IntersectionObserver in
+   script.js.
 --------------------------------------------------------------- */
 .g-nav {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: var(--canvas);
   height: 56px;
+  background: var(--canvas);
 }
 
 .g-nav-inner {
   height: 56px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .g-nav-label {
@@ -139,17 +143,31 @@ button:focus-visible,
 }
 .g-nav-label:hover { color: var(--link); }
 
-.g-nav-label--left { justify-self: start; }
-.g-nav-label--right { justify-self: end; }
+.g-nav-links { display: flex; align-items: center; gap: 2rem; }
 
 .g-wordmark {
-  justify-self: center;
   font-family: var(--font-display);
-  font-size: 0.875rem;
+  font-size: 1.0625rem;
   font-weight: 400;
-  letter-spacing: 0.43em;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
   color: var(--ink);
+}
+
+/* Only the nav's own wordmark fades in/out (see script.js); the hero's
+   copy of it is always shown — it's what's visible before that handoff. */
+#nav-wordmark {
+  letter-spacing: 0.12em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+#nav-wordmark.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  #nav-wordmark { transition: none; }
 }
 
 /* ---------------------------------------------------------------
@@ -225,9 +243,10 @@ button:focus-visible,
   border: 1px solid var(--ink);
   color: var(--ink);
   animation: g-scroll-cue-bounce 2.2s ease-in-out infinite;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.3s ease;
 }
 .g-scroll-cue:hover { background: rgba(255, 255, 255, 0.08); }
+.g-scroll-cue.is-hidden { opacity: 0; pointer-events: none; }
 
 @keyframes g-scroll-cue-bounce {
   0%, 100% { transform: translate(-50%, 0); }
@@ -273,7 +292,8 @@ button:focus-visible,
   font-size: clamp(1.1rem, 2.5vw, 1.45rem);
 }
 
-.g-hero > .g-wrap > .g-caption-link { display: block; margin-bottom: 1rem; font-size: 0.8125rem; }
+/* Bold in the hero body; the nav's copy of the wordmark stays the regular weight. */
+.g-hero-name { display: block; margin-bottom: 1rem; font-weight: 700; }
 #featured > .g-wrap > .g-caption-link { display: block; margin-bottom: 0.75rem; }
 
 .g-hero-caption {
@@ -553,32 +573,19 @@ button:focus-visible,
 .g-skill-list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--hairline-strong); }
 
 /* ---------------------------------------------------------------
-   CTA + Footer
+   Footer
 --------------------------------------------------------------- */
-.g-cta { padding-block: 80px; text-align: center; }
-.g-cta-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  max-width: 24ch;
-  margin-inline: auto;
-}
-.g-cta-sub {
-  margin-top: 0.75rem;
-  font-family: var(--font-text);
-  font-size: 1rem;
-  color: var(--muted);
-}
-.g-cta .g-btn { margin-top: 2rem; }
-
 .g-footer { background: var(--canvas); padding-block: 64px; text-align: center; }
 .g-footer-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem 1.75rem;
+  width: fit-content;
+  margin-inline: auto;
+  border-top: 1px solid var(--hairline);
+  padding-top: 2.5rem;
+  padding-inline: 4rem;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   letter-spacing: 0.12em;

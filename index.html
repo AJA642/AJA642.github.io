@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000000'/%3E%3Ctext x='32' y='45' font-family='Georgia' font-size='30' font-weight='400' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400&amp;family=EB+Garamond:wght@400&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;700&amp;family=EB+Garamond:wght@400&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,9 +21,11 @@
 
 <header class="g-nav">
   <div class="g-wrap g-nav-inner">
-    <a class="g-nav-label g-nav-label--left" href="#projects">Menu</a>
-    <a class="g-wordmark" href="#top">Ashish Abraham</a>
-    <a class="g-nav-label g-nav-label--right" href="mailto:ajabraham.642@gmail.com">Contact</a>
+    <a class="g-wordmark" id="nav-wordmark" href="#top">Ashish Abraham</a>
+    <nav class="g-nav-links">
+      <a class="g-nav-label" href="#skills">Skills</a>
+      <a class="g-nav-label" href="mailto:ajabraham.642@gmail.com">Contact</a>
+    </nav>
   </div>
 </header>
 
@@ -31,7 +33,7 @@
 
   <section id="top" class="g-hero">
     <div class="g-wrap">
-      <p class="g-caption-link" style="cursor:default;">Open to Work</p>
+      <p class="g-wordmark g-hero-name" id="hero-name" style="cursor:default;">Ashish Abraham</p>
       <h1 class="g-hero-title">
         <span class="g-hero-title-accent">Data Analyst</span>
         <span class="g-hero-title-sub">MSc in Data Science</span>
@@ -39,7 +41,7 @@
       </h1>
       <p class="g-hero-caption">Python / SQL / Streamlit / Tableau</p>
       <div class="g-hero-actions">
-        <a href="#projects" class="g-btn">View Projects</a>
+        <a href="#featured" class="g-btn">View Projects</a>
         <a href="assets/Ashish_Abraham_CV.pdf" class="g-btn" target="_blank" rel="noopener">Download CV</a>
       </div>
     </div>
@@ -201,14 +203,6 @@
         </article>
 
       </div>
-    </div>
-  </section>
-
-  <section class="g-cta reveal">
-    <div class="g-wrap">
-      <h2 class="g-cta-title">Let's Talk About Your Data</h2>
-      <p class="g-cta-sub">Open to Data Analyst / BI roles — Bengaluru or remote.</p>
-      <a href="mailto:ajabraham.642@gmail.com" class="g-btn">Get In Touch</a>
     </div>
   </section>
 
