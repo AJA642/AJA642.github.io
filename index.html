@@ -32,25 +32,30 @@
   <section id="top" class="g-hero">
     <div class="g-wrap">
       <p class="g-caption-link" style="cursor:default;">Open to Work</p>
-      <h1 class="g-hero-title">Data Analyst With An MSc In Data Science, Based In Bengaluru</h1>
-      <p class="g-hero-caption">Python / SQL / Streamlit / Tableau — open to Data Analyst / BI roles</p>
+      <h1 class="g-hero-title">
+        <span class="g-hero-title-accent">Data Analyst</span>
+        <span class="g-hero-title-sub">MSc in Data Science</span>
+        <span class="g-hero-title-sub g-hero-title-sub--place">Bengaluru</span>
+      </h1>
+      <p class="g-hero-caption">Python / SQL / Streamlit / Tableau</p>
       <div class="g-hero-actions">
         <a href="#projects" class="g-btn">View Projects</a>
         <a href="assets/Ashish_Abraham_CV.pdf" class="g-btn" target="_blank" rel="noopener">Download CV</a>
       </div>
-
-      <div class="g-callout-card">
-        <p class="g-callout-body">Open to new opportunities in data analysis and BI.</p>
-        <a href="mailto:ajabraham.642@gmail.com" class="g-caption-link g-callout-link">Get In Touch →</a>
-      </div>
     </div>
+
+    <a href="#about" class="g-scroll-cue" aria-label="Scroll to About section">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
   </section>
 
   <section id="about" class="g-section reveal">
     <div class="g-wrap">
       <h2 class="g-section-title">About</h2>
-      <div class="g-feature-grid">
-        <p class="g-body">I'm a Data Analyst with an MSc in Data Science from the University of Birmingham Dubai, and I like data that's been dragged through a real pipeline before it reaches a dashboard, not tidy sample datasets. Most of what I build starts messy: raw stats, mismatched IDs, inconsistent formats, and ends as something a non-technical stakeholder can open and actually trust. I'm looking for Data Analyst / BI roles where I can own that whole path, from cleaning and modelling through to the chart someone finally acts on. Outside of work, that same habit of hunting for hidden patterns goes straight into football analytics, which is more or less why my dissertation happened.</p>
+      <div class="g-feature-grid g-about-grid">
+        <p class="g-body">I'm a Data Analyst with an MSc in Data Science from the University of Birmingham Dubai, and I like data that's been dragged through a real pipeline before it reaches a dashboard, not tidy sample datasets. Most of what I build starts messy: raw stats, mismatched IDs, inconsistent formats, and ends as something a non-technical stakeholder can open and actually trust. I'm looking for Data Analyst / BI roles where I can own that whole path, from cleaning and modelling through to the chart someone finally acts on. Outside of work, that same habit of hunting for hidden patterns goes straight into football analytics, which is more or less why my&nbsp;dissertation&nbsp;happened.</p>
         <div class="g-about-side">
           <div class="g-about-block">
             <p class="g-card-meta">Education</p>
@@ -102,44 +107,45 @@
     </div>
   </section>
 
-  <section class="g-section reveal">
+  <section id="featured" class="g-section reveal">
     <div class="g-wrap">
-      <div class="g-feature-grid">
-        <div>
-          <h2 class="g-feature-title">Performance vs Prestige: Detecting Bias in Football Player Valuations</h2>
-          <div class="g-feature-copy">
-            <p class="g-body">An interactive scouting dashboard and bias-detection study asking whether players are valued for their performance — or for the league they happen to play in.</p>
-            <p class="g-body">MSc dissertation project, University of Birmingham Dubai. Built on 2,061 players across Europe's Big 5 leagues for the 2024-25 season, combining performance data from FBref with market valuations from Transfermarkt.</p>
-            <p class="g-body">Position-specific models — XGBoost, LightGBM, and Ridge — predict each player's market value from their on-pitch performance. SHAP analysis then breaks that prediction apart to show how much of it is explained by the player's own output versus their league or confederation. The result is a 5-page Streamlit dashboard — Home, Model Performance, Value Finder, Player Explorer, Bias Explorer — built for scouting and exploring the data, not just reading about it.</p>
-          </div>
+      <h2 class="g-section-title">Projects</h2>
+      <p class="g-caption-link">Featured Project</p>
+      <h2 class="g-feature-title">Performance vs Prestige: Detecting Bias in Football Player Valuations</h2>
 
-          <div class="g-feature-actions">
-            <a href="https://github.com/AJA642/Football-PlayerValuation" class="g-btn" target="_blank" rel="noopener">View On GitHub</a>
-            <button type="button" class="g-btn g-btn-disabled" disabled>Live Dashboard — Coming Soon</button>
-          </div>
+      <div class="g-feature-grid g-about-grid">
+        <div class="g-feature-copy">
+          <p class="g-body">An interactive scouting dashboard and bias-detection study asking whether players are valued for their performance — or for the league they happen to play in.</p>
+          <p class="g-body">MSc dissertation project, University of Birmingham Dubai. Built on 2,061 players across Europe's Big 5 leagues for the 2024-25 season, combining performance data from FBref with market valuations from Transfermarkt.</p>
+          <p class="g-body">Position-specific models — XGBoost, LightGBM, and Ridge — predict each player's market value from their on-pitch performance. SHAP analysis then breaks that prediction apart to show how much of it is explained by the player's own output versus their league or confederation. The result is a 5-page Streamlit dashboard — Home, Model Performance, Value Finder, Player Explorer, Bias Explorer — built for scouting and exploring the data, not just reading about it.</p>
+        </div>
 
-          <div class="g-highlight-card">
-            <div class="g-spec-row">
-              <div class="g-spec-cell">
-                <span class="g-spec-value">2,061</span>
-                <span class="g-spec-label">Players</span>
-              </div>
-              <div class="g-spec-cell">
-                <span class="g-spec-value">0.78</span>
-                <span class="g-spec-label">Best R² (Defenders)</span>
-              </div>
-              <div class="g-spec-cell">
-                <span class="g-spec-value">5</span>
-                <span class="g-spec-label">Dashboard Pages</span>
-              </div>
+        <div class="g-highlight-card">
+          <div class="g-spec-row">
+            <div class="g-spec-cell">
+              <span class="g-spec-value">2,061</span>
+              <span class="g-spec-label">Players</span>
             </div>
-            <p class="g-highlight-note"><strong>Key finding</strong> Premier League shows the largest bias effect of all five leagues, across every position.</p>
+            <div class="g-spec-cell">
+              <span class="g-spec-value">0.78</span>
+              <span class="g-spec-label">Best R² (Defenders)</span>
+            </div>
+            <div class="g-spec-cell">
+              <span class="g-spec-value">5</span>
+              <span class="g-spec-label">Dashboard Pages</span>
+            </div>
           </div>
+          <p class="g-highlight-note"><strong>Key finding</strong> Premier League shows the largest bias effect of all five leagues, across every position.</p>
         </div>
+      </div>
 
-        <div class="g-feature-media">
-          <img src="assets/screenshot-bias-explorer.png" alt="Bias Explorer page of the Streamlit dashboard: a League Bias chart showing SHAP contribution by league and position, with Premier League's bars extending furthest of all five leagues — the largest bias effect across every position">
-        </div>
+      <div class="g-feature-actions">
+        <a href="https://github.com/AJA642/Football-PlayerValuation" class="g-btn" target="_blank" rel="noopener">View On GitHub</a>
+        <button type="button" class="g-btn g-btn-disabled" disabled>Live Dashboard — Coming Soon</button>
+      </div>
+
+      <div class="g-feature-media">
+        <img src="assets/screenshot-bias-explorer.png" alt="Bias Explorer page of the Streamlit dashboard: a League Bias chart showing SHAP contribution by league and position, with Premier League's bars extending furthest of all five leagues — the largest bias effect across every position">
       </div>
     </div>
   </section>
