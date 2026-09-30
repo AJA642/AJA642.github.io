@@ -667,7 +667,7 @@ a.g-caption-link:hover { color: var(--ink); }
 
 .g-case-body p {
   font-family: var(--font-text);
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.55;
   color: var(--body);
   text-align: justify;
@@ -715,4 +715,45 @@ a.g-caption-link:hover { color: var(--ink); }
   .g-hero-actions .g-btn, .g-feature-actions .g-btn { width: 100%; }
   .g-spec-row { flex-wrap: wrap; gap: 1.5rem; }
   .g-skill-row { flex-direction: column; gap: 0.5rem; }
+
+  /* Tighter vertical rhythm — 120px section padding reads as dead
+     space once the viewport itself is only ~850px tall. */
+  :root { --section: 64px; }
+
+  /* Justified text produces uneven word-gaps once the line is only
+     a few words wide; ragged-right reads better on a phone column. */
+  #about .g-body,
+  .g-feature-copy p,
+  .g-case-body p {
+    text-align: left;
+  }
+
+  /* Hero — bring the name/title up near the top instead of a large
+     empty band above it; the scroll cue still anchors to the bottom
+     of the (still full-height) hero. */
+  .g-hero {
+    align-items: flex-start;
+    padding-top: 96px;
+    padding-bottom: 40px;
+  }
+  .g-hero > .g-wrap { margin-top: 0; }
+  .g-hero-actions { margin-top: 2rem; }
+
+  /* Case-study article — trim the whitespace between figures/subheads
+     to match the tighter phone rhythm. */
+  .g-case-page { padding-top: 40px; }
+  .g-case-back { margin-bottom: 1.75rem; }
+  .g-case-meta { margin-bottom: 2rem; }
+  .g-case-subhead { margin-top: 2.5rem; margin-bottom: 1rem; }
+  .g-case-figure { margin: 1.75rem auto; }
+
+  /* Highlight card and cards grid — less padding, tighter gap so more
+     of each card is visible per scroll. */
+  .g-highlight-card { padding: 1.25rem; margin-top: 2rem; }
+  .g-cards-grid { gap: 3rem; }
+  .g-card-title { font-size: 1.3rem; }
+
+  /* About/education side column already stacks under the bio at this
+     width — tighten the gap above it to match the rest of the page. */
+  .g-about-side { margin-top: 0.5rem; gap: 1.5rem; }
 }
