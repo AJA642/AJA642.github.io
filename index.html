@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000000'/%3E%3Ctext x='32' y='45' font-family='Georgia' font-size='30' font-weight='400' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;700&amp;family=EB+Garamond:wght@400&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -57,7 +57,11 @@
     <div class="g-wrap">
       <h2 class="g-section-title">About</h2>
       <div class="g-feature-grid g-about-grid">
-        <p class="g-body">I'm a Data Analyst with an MSc in Data Science from the University of Birmingham Dubai, and I like data that's been dragged through a real pipeline before it reaches a dashboard, not tidy sample datasets. Most of what I build starts messy: raw stats, mismatched IDs, inconsistent formats, and ends as something a non-technical stakeholder can open and actually trust. I'm looking for Data Analyst / BI roles where I can own that whole path, from cleaning and modelling through to the chart someone finally acts on. Outside of work, that same habit of hunting for hidden patterns goes straight into football analytics, which is more or less why my&nbsp;dissertation&nbsp;happened.</p>
+        <div class="g-body">
+          <p>I'm a Data Analyst with an MSc in Data Science from the University of Birmingham Dubai, with two years of experience at CGI in software engineering.</p>
+          <p>I'm looking for Data Analyst and BI roles where I can put that technical and analytical background to use on practical business problems.</p>
+          <p>Outside of work, I follow football closely. My dissertation explores bias in how football players are&nbsp;valued.</p>
+        </div>
         <div class="g-about-side">
           <div class="g-about-block">
             <p class="g-card-meta">Education</p>
@@ -95,16 +99,16 @@
         <ul class="g-skill-list"><li>Python</li><li>SQL</li></ul>
       </div>
       <div class="g-skill-row">
-        <span class="g-skill-title">Analysis &amp; ML</span>
-        <ul class="g-skill-list"><li>pandas</li><li>scikit-learn</li><li>XGBoost</li><li>LightGBM</li><li>SHAP</li></ul>
+        <span class="g-skill-title">Data Analysis</span>
+        <ul class="g-skill-list"><li>Pandas</li><li>NumPy</li><li>Statistical Analysis</li><li>Excel</li></ul>
       </div>
       <div class="g-skill-row">
-        <span class="g-skill-title">Dashboards &amp; BI</span>
-        <ul class="g-skill-list"><li>Streamlit</li><li>Tableau Public</li></ul>
+        <span class="g-skill-title">Machine Learning</span>
+        <ul class="g-skill-list"><li>Scikit-learn</li><li>XGBoost</li><li>LightGBM</li><li>SHAP</li></ul>
       </div>
       <div class="g-skill-row">
-        <span class="g-skill-title">Tools</span>
-        <ul class="g-skill-list"><li>Git</li><li>Excel</li><li>Jupyter</li></ul>
+        <span class="g-skill-title">BI &amp; Visualisation</span>
+        <ul class="g-skill-list"><li>Streamlit</li><li>Tableau Public</li><li>Power BI</li></ul>
       </div>
     </div>
   </section>
@@ -158,48 +162,31 @@
       <div class="g-cards-grid">
 
         <article class="g-card">
-          <div class="g-card-media">
-            <img src="assets/screenshot-flight-delays.png" alt="Bar chart showing the cascading delay effect: average departure delay climbs from 6.7 minutes on an aircraft's first flight of the day to 88.8 minutes when that same aircraft's previous leg landed over an hour late">
-          </div>
-          <h3 class="g-card-title">On-Time Or Not: A SQL Analysis Of US Flight Delays</h3>
-          <p class="g-card-meta">SQL / Python / SQLite</p>
-          <p class="g-card-desc">A SQL + Python case study on 1.4M US domestic flights, tracing how delay cascades through an aircraft's day and which airports and airlines actually drive it.</p>
+          <a class="g-card-media" href="dxb-case-study.html" aria-label="Read the What Eight Years of UAE Flight Data Shows About Dubai's Move to DWC case study">
+            <img src="assets/screenshot-dxb-movements.webp" alt="Emirates aircraft parked at Dubai International Airport's terminal at dusk, with the Dubai skyline and Burj Khalifa in the background">
+          </a>
+          <h3 class="g-card-title">What Eight Years Of UAE Flight Data Shows About Dubai's Move To DWC</h3>
+          <p class="g-card-meta">Python / pandas / NumPy / Matplotlib/Seaborn / SciPy</p>
+          <p class="g-card-desc">An MSc data analysis project on eight years of UAE flight movements and Dubai Airports' own DXB/DWC figures, tracing growth, seasonality, and COVID recovery, then testing what the evidence does and doesn't say about Dubai's planned shift to Al Maktoum International.</p>
           <div class="g-card-stats">
-            <span><strong>1.4M</strong> flights analyzed</span>
-            <span><strong>88.8 min</strong> worst cascading delay</span>
-            <span><strong>67%</strong> weather cancellations</span>
+            <span><strong>96</strong> months of UAE flight data (2018–2025)</span>
+            <span><strong>833,789</strong> flights in 2025, a record high</span>
+            <span><strong>83%</strong> of DXB's 115M capacity ceiling</span>
           </div>
-          <p class="g-card-links"><span class="g-caption-link">GitHub — Coming Soon</span> · <span class="g-caption-link">Case Study — Coming Soon</span></p>
         </article>
 
         <article class="g-card">
-          <div class="g-card-media">
-            <img src="assets/screenshot-stock-analyzer.png" alt="Line chart comparing four trading strategies on a $10,000 starting portfolio: Momentum Rotation reaches roughly $318,000 after 10 years, well above Buy &amp; Hold's $97,000, with MA Crossover and Mean Reversion trailing behind">
-          </div>
-          <h3 class="g-card-title">Stock Portfolio Analyzer &amp; Backtesting Engine</h3>
-          <p class="g-card-meta">Python / pandas / Streamlit</p>
-          <p class="g-card-desc">A quantitative finance tool that backtests 4 trading strategies across 4 example portfolios over 10 years of daily data, then stress-tests the results with Monte Carlo simulation.</p>
+          <a class="g-card-media g-card-media--logo" href="spotify-case-study.html" aria-label="Read the Beyond Wrapped case study">
+            <img src="assets/logos/spotify.svg" alt="Spotify logo">
+          </a>
+          <h3 class="g-card-title">Spotify: Beyond Wrapped</h3>
+          <p class="g-card-meta">Python / pandas / Jupyter / MusicBrainz API</p>
+          <p class="g-card-desc">A personal analytics project on 7.5 years of my own Spotify listening history, exploring genre trends, artist trends, listening depth, and seasonality before EDM (the largest genre every year) earns its own deep dive.</p>
           <div class="g-card-stats">
-            <span><strong>1.38</strong> best Sharpe (Equal Weight)</span>
-            <span><strong>3,078%</strong> Momentum Rotation return</span>
-            <span><strong>15</strong> tickers analyzed</span>
+            <span><strong>7,399</strong> hrs analyzed</span>
+            <span><strong>2,577</strong> artists</span>
+            <span><strong>36.6%</strong> EDM share (largest genre, every year)</span>
           </div>
-          <p class="g-card-links"><span class="g-caption-link">GitHub — Coming Soon</span> · <span class="g-caption-link">Case Study — Coming Soon</span></p>
-        </article>
-
-        <article class="g-card">
-          <div class="g-card-media">
-            <img src="assets/screenshot-resume-matcher.png" alt="Bar chart of matched (green) versus missing (red) skills for an entry-level resume against a senior job description, showing gaps in experiment design and mentoring">
-          </div>
-          <h3 class="g-card-title">Resume ↔ Job Description Matcher</h3>
-          <p class="g-card-meta">Python / scikit-learn / Streamlit</p>
-          <p class="g-card-desc">An NLP tool that scores resume/JD fit three different ways — TF-IDF, skill-taxonomy overlap, and sentence embeddings — and turns the result into an actionable gap analysis instead of a bare score.</p>
-          <div class="g-card-stats">
-            <span><strong>TF-IDF</strong> best single method (ρ=0.836)</span>
-            <span><strong>ρ=0.888</strong> combined score</span>
-            <span><strong>39</strong> tests passing</span>
-          </div>
-          <p class="g-card-links"><span class="g-caption-link">GitHub — Coming Soon</span> · <span class="g-caption-link">Case Study — Coming Soon</span></p>
         </article>
 
       </div>

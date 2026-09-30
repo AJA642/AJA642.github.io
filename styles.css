@@ -21,7 +21,7 @@
   --accent:         #e06a16;
 
   --font-display: 'Saira Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-text:    'EB Garamond', Garamond, 'Times New Roman', serif;
+  --font-text:    'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', monospace;
 
   --wrap: 1280px;
@@ -215,6 +215,7 @@ button:focus-visible,
   text-transform: uppercase;
   color: var(--muted);
 }
+a.g-caption-link:hover { color: var(--ink); }
 
 /* ---------------------------------------------------------------
    Hero — pure black, uppercase display-xl, generous rhythm
@@ -399,6 +400,7 @@ button:focus-visible,
   color: var(--body);
   max-width: 66ch;
 }
+.g-body p + p { margin-top: 1rem; }
 
 /* ---------------------------------------------------------------
    About — two-column: bio + quiet education/experience lockups
@@ -494,6 +496,14 @@ button:focus-visible,
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
+}
+
+/* When only one project card remains, keep it at its normal column
+   width and centered instead of stretching it full-width or leaving
+   an empty half-row beside it. */
+.g-cards-grid:has(> .g-card:only-child) {
+  grid-template-columns: minmax(0, calc(50% - 1.25rem));
+  justify-content: center;
 }
 
 .g-card { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -608,6 +618,88 @@ button:focus-visible,
   font-family: var(--font-text);
   font-size: 0.8125rem;
   color: var(--muted-soft);
+}
+
+/* ---------------------------------------------------------------
+   Project card — centered brand-mark cover (Spotify card), instead
+   of a screenshot. Reuses .g-card-media's frame/background.
+--------------------------------------------------------------- */
+.g-card-media--logo { display: flex; align-items: center; justify-content: center; }
+.g-card-media--logo img { width: 88px; height: 88px; object-fit: contain; }
+
+/* ---------------------------------------------------------------
+   Case study page (spotify-case-study.html and similar) — a full
+   long-form article page, built from the same tokens/classes as
+   the rest of the site so it reads as part of it, not bolted on.
+--------------------------------------------------------------- */
+.g-case-page { padding-top: 64px; }
+
+.g-case-back {
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.g-case-back:hover { color: var(--link); }
+
+.g-case-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.g-case-meta {
+  margin-bottom: 3rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.g-case-body p {
+  font-family: var(--font-text);
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: var(--body);
+  text-align: justify;
+}
+.g-case-body p + p { margin-top: 1.25rem; }
+
+.g-case-subhead {
+  margin-top: 3.25rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.625rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.g-case-figure { max-width: 85ch; margin: 2.5rem auto; }
+.g-case-figure img {
+  width: 100%;
+  display: block;
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+}
+.g-case-figure figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--muted);
 }
 
 /* ---------------------------------------------------------------
