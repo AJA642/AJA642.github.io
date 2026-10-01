@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Performance vs Prestige: A Machine Learning Study of Bias in Football Player Valuations — Ashish Abraham</title>
+<meta name="description" content="An MSc dissertation using position-specific ML models and SHAP to decompose football players' market values into a performance part and a context part — and finds that Premier League affiliation alone is worth millions, in every position.">
+<meta property="og:title" content="Performance vs Prestige: A Machine Learning Study of Bias in Football Player Valuations">
+<meta property="og:description" content="An MSc dissertation using position-specific ML models and SHAP to decompose football players' market values into a performance part and a context part — and finds that Premier League affiliation alone is worth millions, in every position.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000000'/%3E%3Ctext x='32' y='45' font-family='Georgia' font-size='30' font-weight='400' fill='%23ffffff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="g-skip-link" href="#main">Skip to content</a>
+
+<header class="g-nav">
+  <div class="g-wrap g-nav-inner">
+    <a class="g-wordmark is-visible" id="nav-wordmark" href="index.html#top">Ashish Abraham</a>
+    <nav class="g-nav-links">
+      <a class="g-nav-label" href="index.html#skills">Skills</a>
+      <a class="g-nav-label" href="mailto:ajabraham.642@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="g-section g-case-page">
+    <div class="g-wrap">
+      <a class="g-case-back" href="index.html#featured">&larr; All Projects</a>
+
+      <p class="g-caption-link">Case Study &middot; MSc Dissertation</p>
+      <h1 class="g-case-title">Performance vs Prestige: A Machine Learning Study of Bias in Football Player Valuations</h1>
+      <p class="g-case-meta">Python &middot; pandas &middot; XGBoost &middot; LightGBM &middot; SHAP &middot; Streamlit &mdash; 2024&ndash;25 season</p>
+
+      <div class="g-case-body">
+        <p>Transfer fees regularly run into the hundreds of millions, yet how a player's price actually gets set stays mostly a black box. Platforms like Transfermarkt have become the default reference point for market value, produced through a moderated, crowd-sourced consensus rather than a transparent accounting of performance. Separately, sports economics research has shown that non-performance factors &mdash; media coverage, reputational visibility, nationality &mdash; measurably move valuations too. Neither strand decomposes one specific player's number into the part earned by performance and the part attributable to context. This dissertation builds that decomposition: four position-specific machine learning models, trained on 2024&ndash;25 season data, with SHAP used not just to explain the models but to quantify, in actual euros, what a player's league and confederation are doing to their estimated price once performance is already accounted for.</p>
+        <p>The dataset is 2,061 players across Europe's Big 5 leagues (Premier League, La Liga, Bundesliga, Serie A, Ligue 1) for 2024&ndash;25, built by matching FBRef performance statistics to Transfermarkt valuations through a four-stage name-matching cascade. Four algorithms (Ridge, Random Forest, XGBoost, LightGBM) were compared per position under 5-fold cross-validation, and the winning model for each position was handed to SHAP to break every individual prediction down feature by feature, including the league and confederation dummies.</p>
+      </div>
+
+      <h2 class="g-case-subhead">Can performance alone explain a player's price?</h2>
+      <div class="g-case-body">
+        <p>Mostly, yes &mdash; with real variation by position. The winning model reaches an out-of-fold R&sup2; of 0.7843 for Defenders, 0.7589 for Forwards, 0.7490 for Midfielders, and 0.6875 for Goalkeepers. Defenders fit best, which tracks with how well a stable set of counting stats (tackles, interceptions, blocks) captures defensive contribution; goalkeepers fit worst, which reads as the available features only partly reaching what actually prices a goalkeeper. Ridge Regression, a plain linear model, stays within 0.02&ndash;0.03 R&sup2; of the winning tree ensemble in every position, which suggests most of the exploitable signal here is close to linear in log-space, with XGBoost and LightGBM picking up a fairly small non-linear remainder. None of this says performance predicts value alone, though: league and confederation are direct model inputs here too, not held out, so this R&sup2; is performance and context together. Separating the two is exactly what the next two sections do.</p>
+      </div>
+      <figure class="g-case-figure">
+        <img src="assets/football-case-study/01_r2_by_position.png" alt="Out-of-fold R-squared by position, winning algorithm per position">
+        <figcaption>Out-of-fold R&sup2; by position, winning algorithm per position</figcaption>
+      </figure>
+
+      <h2 class="g-case-subhead">What the model actually weighs</h2>
+      <div class="g-case-body">
+        <p>For Forwards, age and per-90 output (non-penalty expected goals, shots, touches in the box) dominate the SHAP summary, as expected &mdash; but the Premier League dummy sits in the top three features by mean impact, with a spread almost as wide as the output stats around it: a cluster of strongly negative points (players not in the Premier League) and a separate cluster pushed firmly positive. The same pattern, league features ranking alongside the position's own output statistics, repeats for Midfielders, Defenders and Goalkeepers in their own SHAP summaries. Age, playing time and position-specific output (progressive passes for midfielders, tackles and interceptions for defenders, save percentage for goalkeepers) are consistently the largest contributors overall; league affiliation is consistently among them, not a minor adjustment at the margins.</p>
+      </div>
+      <figure class="g-case-figure">
+        <img src="assets/football-case-study/05_shap_summary_fwd.png" alt="SHAP summary plot for the Forwards model, showing the 15 features with the largest mean absolute contribution to predicted market value">
+        <figcaption>SHAP summary, Forwards model &mdash; top 15 features by mean absolute contribution</figcaption>
+      </figure>
+
+      <h2 class="g-case-subhead">Premier League affiliation is worth millions &mdash; in every position</h2>
+      <div class="g-case-body">
+        <p>This is the central result. Summed across every league feature, Premier League affiliation carries the largest positive SHAP contribution in all four positions, and every other league carries a negative one. For outfield players it isn't close: +&euro;9.9M for Forwards, +&euro;12.5M for Midfielders, +&euro;9.3M for Defenders, against discounts of &euro;0.9M&ndash;&euro;3.1M for the other four leagues. Goalkeepers show the same direction at smaller scale (+&euro;3.0M), consistent with that position's weaker overall model fit. The direction held across a cutoff-sensitivity check run during development, and it is the most robust finding across every version of this pipeline. To be precise about what this number is: it's the model's attributed contribution of league-membership features to a prediction, conditional on the performance and other characteristics already in the model &mdash; an association, not a claim about any causal effect of playing in the Premier League.</p>
+        <p>That caveat matters because the model has no club-level financial features at all &mdash; no revenue, wage bill, or European-competition participation &mdash; so the league dummy is the only channel through which prestige, club wealth, genuine competitive intensity, or some mix of the three, can express itself. It also lines up with real financial numbers: Deloitte's Football Money League puts 9 of the world's 20 highest-revenue clubs in the Premier League (against 1 in Ligue 1), with aggregate Premier League club revenue at &pound;6.8 billion for 2024&ndash;25. The finding is best read as a league-affiliation effect, not a league-prestige effect specifically &mdash; the two aren't separable with the features available here.</p>
+      </div>
+      <figure class="g-case-figure">
+        <img src="assets/football-case-study/02_league_shap_contribution.png" alt="League-associated SHAP contribution to predicted market value, by position: Premier League positive in all four, every other league negative">
+        <figcaption>League-associated SHAP contribution to predicted market value, by position</figcaption>
+      </figure>
+
+      <h2 class="g-case-subhead">Confederation barely moves the needle &mdash; except for midfielders</h2>
+      <div class="g-case-body">
+        <p>Confederation effects are one to two orders of magnitude smaller than league effects for Defenders and Midfielders, and exactly zero for Forwards and Goalkeepers &mdash; a genuine, mathematically grounded property of those two trained models, not a rounding artefact: their final tree ensembles never once pick a confederation feature as a split point. Midfielders show the largest and most structured confederation pattern of the four: CAF (Africa) carries a notably negative mean contribution (&minus;&euro;646K) against small positive contributions for UEFA, CONMEBOL, CONCACAF and AFC. Several of these subgroups are small (AFC n=12, CONCACAF n=13, OFC n=1 for midfielders), so this should be read as a real but statistically fragile pattern rather than an established structural finding.</p>
+      </div>
+      <figure class="g-case-figure">
+        <img src="assets/football-case-study/03_confederation_shap_midfielders.png" alt="Confederation-associated SHAP contribution for midfielders, by confederation">
+        <figcaption>Confederation-associated SHAP contribution, Midfielders &mdash; the largest and most structured of the four positions</figcaption>
+      </figure>
+
+      <h2 class="g-case-subhead">Who the model says is underpriced</h2>
+      <div class="g-case-body">
+        <p>Each player's out-of-fold predicted value is compared to their actual Transfermarkt valuation, and anyone in the top 10% of that ratio, within their own position, gets flagged "undervalued." Using the out-of-fold ratio rather than the final model's in-sample prediction keeps the flag from being contaminated by in-sample optimism. 207 of 2,061 players (10.0%) are flagged across the four positions: 78 of 778 Defenders, 64 of 637 Midfielders, 49 of 487 Forwards, 16 of 159 Goalkeepers. The flag and a player's individually displayed "Model Estimated Value" (the final model's own in-sample prediction) are computed differently and won't always move in lockstep for the same player &mdash; both numbers are genuine, they just answer slightly different questions.</p>
+      </div>
+      <figure class="g-case-figure">
+        <img src="assets/football-case-study/04_undervalued_by_position.png" alt="Count and share of players flagged undervalued by position">
+        <figcaption>Players flagged undervalued by position (top 10% of out-of-fold value ratio, within position)</figcaption>
+      </figure>
+
+      <h2 class="g-case-subhead">What this means</h2>
+      <div class="g-case-body">
+        <p>For a scouting or recruitment use case, the practical read is this: the model's "Model Estimated Value" is a peer-comparison estimate &mdash; what players with similar observed characteristics and performance received in this market &mdash; not a forecast or a "fair value" judgement, and the undervalued flag is a starting shortlist, not a verdict. The Premier League finding is the one worth taking most seriously, because it's the most robust result in the whole project, but it should inform how a valuation gap is interpreted rather than be read as proof of any single mechanism behind it: prestige, club wealth, and visibility all plausibly contribute, and this design can't cleanly separate them.</p>
+      </div>
+
+      <h2 class="g-case-subhead">Limits</h2>
+      <div class="g-case-body">
+        <p>The biggest limitation of the whole design is that the feature matrix has no club-level financial or competitive features &mdash; no revenue, wage bill, or European-competition participation &mdash; so the league dummy is the only channel through which prestige, club wealth, and genuine competitive intensity can express themselves, and SHAP cannot separate the three after the fact. The target variable itself is a crowd-sourced Transfermarkt valuation, not a realised transfer fee, and prior research has found that crowd-sourced process gives less attention to less-visible leagues &mdash; so what's measured here is bias as it shows up in that valuation platform, not necessarily bias in prices clubs actually pay. The feature-ablation comparison (full position-specific models vs. a reduced-feature, pooled-position model, R&sup2;=0.5249&ndash;0.5514) changes two things at once, the feature set and the population, so the resulting gap can't be cleanly pinned on the lost features alone. There's no direct popularity or media-exposure measure, so any real visibility effect can only surface indirectly through league affiliation. The final 2,061-player sample reflects several compounding, non-random selection choices (a 270-minute playing-time threshold, a 95.5% FBref-Transfermarkt match rate, 93.1% valuation coverage) stacked on top of each other. SHAP values are an exact breakdown of what a specific trained model learned, not a direct measurement of anything in the real world, so every finding here is a statistical association, not a demonstrated causal effect. This is also a single-season, cross-sectional design (2024&ndash;25 only), so it can't say whether these effects hold stable over time, and several confederation-position subgroups are small enough (OFC, some CONCACAF and goalkeeper groups under 20 players) that their SHAP contributions should be read as indicative, not conclusive. None of this, alone or together, is judged to undermine the central finding &mdash; the Premier League-associated contribution held across every position and every cutoff tested during development &mdash; but together they argue for caution about how far any single number here should be stretched beyond this dataset, season, and valuation platform.</p>
+      </div>
+
+      <a class="g-case-back" href="index.html#featured" style="margin-top: 3.5rem; margin-bottom: 0;">&larr; Back to All Projects</a>
+    </div>
+  </section>
+</main>
+
+<footer id="contact" class="g-footer">
+  <div class="g-wrap">
+    <ul class="g-footer-links">
+      <li><a href="mailto:ajabraham.642@gmail.com">Email</a></li>
+      <li><a href="https://linkedin.com/in/replace-with-real-handle" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://github.com/AJA642" target="_blank" rel="noopener">GitHub</a></li>
+      <li>Bengaluru, India</li>
+    </ul>
+    <p class="g-footer-wordmark">Ashish Abraham</p>
+    <p class="g-footer-fine">&copy; 2026 Ashish Abraham</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
