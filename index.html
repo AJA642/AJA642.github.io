@@ -117,35 +117,23 @@
     <div class="g-wrap">
       <h2 class="g-section-title">Projects</h2>
       <p class="g-caption-link">Featured Project</p>
-      <h2 class="g-feature-title">Performance vs Prestige: Detecting Bias in Football Player Valuations</h2>
 
       <div class="g-feature-grid g-about-grid">
         <div class="g-feature-copy">
-          <p class="g-body">An interactive scouting dashboard and bias-detection study asking whether players are valued for their performance — or for the league they happen to play in.</p>
-          <p class="g-body">MSc dissertation project, University of Birmingham Dubai. Built on 2,061 players across Europe's Big 5 leagues for the 2024-25 season, combining performance data from FBref with market valuations from Transfermarkt.</p>
-          <p class="g-body">Position-specific models — XGBoost, LightGBM, and Ridge — predict each player's market value from their on-pitch performance. SHAP analysis then breaks that prediction apart to show how much of it is explained by the player's own output versus their league or confederation. The result is a 5-page Streamlit dashboard — Home, Model Performance, Value Finder, Player Explorer, Bias Explorer — built for scouting and exploring the data, not just reading about it.</p>
+          <h2 class="g-feature-title">Performance vs Prestige<span class="g-feature-subtitle">Bias in Football Player Valuations</span></h2>
+          <p class="g-card-meta">Python / pandas / XGBoost / LightGBM / SHAP / Streamlit</p>
+          <p class="g-body">An interactive scouting dashboard and bias-detection study asking whether football players are valued for their performance — or for the league they happen to play in.</p>
+          <p class="g-body">MSc dissertation project, University of Birmingham Dubai. Built on 2,061 players across Europe's Big 5 leagues for the 2024-25 season, using position-specific models and SHAP analysis to separate a player's own output from their league's effect on their market value. The result is a 5-page Streamlit dashboard.</p>
+          <p class="g-body">Premier League shows the largest bias effect of all five leagues, across every position — despite the model's strongest fit, 0.78 R², coming from defenders.</p>
         </div>
 
-        <div class="g-highlight-card">
-          <div class="g-spec-row">
-            <div class="g-spec-cell">
-              <span class="g-spec-value">2,061</span>
-              <span class="g-spec-label">Players</span>
-            </div>
-            <div class="g-spec-cell">
-              <span class="g-spec-value">0.78</span>
-              <span class="g-spec-label">Best R² (Defenders)</span>
-            </div>
-            <div class="g-spec-cell">
-              <span class="g-spec-value">5</span>
-              <span class="g-spec-label">Dashboard Pages</span>
-            </div>
-          </div>
-          <p class="g-highlight-note"><strong>Key finding</strong> Premier League shows the largest bias effect of all five leagues, across every position.</p>
+        <div class="g-feature-photo">
+          <img src="assets/football-valuation.jpg" alt="Five football players in their club and national kits, viewed from behind, each standing in front of their league's crest and total market value: Ligue 1, Serie A, Bundesliga, LaLiga, and the Premier League">
         </div>
       </div>
 
       <div class="g-feature-actions">
+        <a href="football-case-study.html" class="g-btn">Read The Case Study</a>
         <a href="https://github.com/AJA642/Football-PlayerValuation" class="g-btn" target="_blank" rel="noopener">View On GitHub</a>
         <button type="button" class="g-btn g-btn-disabled" disabled>Live Dashboard — Coming Soon</button>
       </div>
@@ -162,30 +150,41 @@
       <div class="g-cards-grid">
 
         <article class="g-card">
-          <a class="g-card-media" href="dxb-case-study.html" aria-label="Read the What Eight Years of UAE Flight Data Shows About Dubai's Move to DWC case study">
+          <a class="g-card-media" href="dxb-case-study.html" aria-label="Read the DXB: The Move to DWC case study">
             <img src="assets/screenshot-dxb-movements.webp" alt="Emirates aircraft parked at Dubai International Airport's terminal at dusk, with the Dubai skyline and Burj Khalifa in the background">
           </a>
-          <h3 class="g-card-title">What Eight Years Of UAE Flight Data Shows About Dubai's Move To DWC</h3>
-          <p class="g-card-meta">Python / pandas / NumPy / Matplotlib/Seaborn / SciPy</p>
-          <p class="g-card-desc">An MSc data analysis project on eight years of UAE flight movements and Dubai Airports' own DXB/DWC figures, tracing growth, seasonality, and COVID recovery, then testing what the evidence does and doesn't say about Dubai's planned shift to Al Maktoum International.</p>
+          <h3 class="g-card-title">DXB: The Move to DWC</h3>
+          <p class="g-card-meta">Python / pandas / Matplotlib / Seaborn</p>
+          <p class="g-card-desc">An analysis of eight years of UAE flight movements and Dubai Airports' DXB/DWC figures, tracing growth, seasonality, and COVID recovery while examining the evidence around Dubai's planned shift to Al Maktoum International.</p>
           <div class="g-card-stats">
-            <span><strong>96</strong> months of UAE flight data (2018–2025)</span>
             <span><strong>833,789</strong> flights in 2025, a record high</span>
             <span><strong>83%</strong> of DXB's 115M capacity ceiling</span>
           </div>
         </article>
 
         <article class="g-card">
-          <a class="g-card-media g-card-media--logo" href="spotify-case-study.html" aria-label="Read the Beyond Wrapped case study">
-            <img src="assets/logos/spotify.svg" alt="Spotify logo">
+          <a class="g-card-media" href="spotify-case-study.html" aria-label="Read the Beyond Wrapped case study">
+            <img src="assets/spotify-listening.jpg" alt="Headphones and earbuds beside a glowing Spotify logo on a black background">
           </a>
           <h3 class="g-card-title">Spotify: Beyond Wrapped</h3>
           <p class="g-card-meta">Python / pandas / Jupyter / MusicBrainz API</p>
-          <p class="g-card-desc">A personal analytics project on 7.5 years of my own Spotify listening history, exploring genre trends, artist trends, listening depth, and seasonality before EDM (the largest genre every year) earns its own deep dive.</p>
+          <p class="g-card-desc">An analysis of 7.5 years of my Spotify listening history, exploring genre and artist trends, listening depth, and seasonality, with a deeper look at EDM's dominance over time.</p>
           <div class="g-card-stats">
-            <span><strong>7,399</strong> hrs analyzed</span>
             <span><strong>2,577</strong> artists</span>
-            <span><strong>36.6%</strong> EDM share (largest genre, every year)</span>
+            <span><strong>9,859</strong> distinct tracks played</span>
+          </div>
+        </article>
+
+        <article class="g-card">
+          <a class="g-card-media" href="f1-case-study.html" aria-label="Read the F1: Grid to Glory case study">
+            <img src="assets/f1-race.jpg" alt="A pack of Formula 1 cars battling through a corner">
+          </a>
+          <h3 class="g-card-title">F1: Grid to Glory</h3>
+          <p class="g-card-meta">SQL / Python / pandas / SQLite / Matplotlib</p>
+          <p class="g-card-desc">A statistical analysis of 75 years of Formula 1 results, examining qualifying, reliability, pit stops, and the relationship between starting position and race finish.</p>
+          <div class="g-card-stats">
+            <span><strong>26,759</strong> race results</span>
+            <span><strong>1,125</strong> races analyzed</span>
           </div>
         </article>
 
