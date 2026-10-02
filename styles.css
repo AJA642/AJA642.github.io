@@ -545,7 +545,16 @@ a.g-caption-link:hover { color: var(--ink); }
   justify-content: center;
 }
 
-.g-card { display: flex; flex-direction: column; gap: 0.6rem; }
+.g-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  margin: -1rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+.g-card:hover { background-color: var(--surface-elevated); }
 
 .g-card-media { aspect-ratio: 16 / 9; background: var(--surface-soft); overflow: hidden; }
 .g-card-media img { width: 100%; height: 100%; object-fit: cover; }
