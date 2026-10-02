@@ -38,6 +38,10 @@
       <h1 class="g-case-title">Beyond Wrapped: 7.5 Years of My Own Spotify Data</h1>
       <p class="g-case-meta">Python &middot; pandas &middot; Jupyter &middot; MusicBrainz API &mdash; Feb 2019&ndash;Sep 2026</p>
 
+      <div class="g-case-actions">
+        <a href="https://github.com/AJA642/Spotify-Beyond-Wrapped" class="g-btn" target="_blank" rel="noopener">GitHub Repo</a>
+      </div>
+
       <div class="g-case-body">
         <p>Every December, Spotify Wrapped hands you a few shareable charts and calls it a year in review. I wanted the real version: every play going back to when I first started using the platform, not the highlight reel. So I pulled my own Extended Streaming History, Spotify's full data export rather than the marketing one, and built a project around it: 7,398.8 hours of filtered listening (7,504 hours before I drop anything under 30 seconds), 2,577 artists, and 9,859 distinct tracks, spanning February 2019 through early September this year.</p>
         <p>One rule going in: I like EDM, it's probably my favorite genre, and I didn't want that to be the reason this analysis exists. So the project starts with genre trends, artist trends, how long I actually listen to a given song, and how my listening changes across the calendar year. EDM only gets its own section once the data itself says it's earned one. Every chart and number below comes from a single notebook that runs top to bottom in under five seconds and never touches a live API &mdash; it loads the same cached data the rest of this project already produced.</p>
@@ -137,7 +141,7 @@
       <div class="g-case-body">
         <p>Spotify's export doesn't include genre at all, and the obvious source, its own Web API, turned out to be a dead end: the developer app I'd registered was stuck in Spotify's most restricted access tier, so every artist came back with zero genre tags, mainstream acts included, no matter how long I waited out what looked like a rate limit. I rebuilt genre resolution from scratch around MusicBrainz instead, an open public database with no login and a simple, documented rate limit.</p>
         <p>That switch came with its own problem: MusicBrainz's tags are community-submitted, not algorithmic, so they're noisier. Early on, a couple of stray "house" tags on Kanye West's profile were enough to classify him as EDM ahead of his ten-plus genuine hip-hop tags, until I caught it by checking why a specific high-impact artist had landed where it had, rather than just trusting the aggregate number. Switching to a plurality vote across an artist's full tag list, instead of "first match wins," fixed it.</p>
-        <p>In the end, 1,712 of 2,577 artists resolved to a usable genre tag, covering 92.2% of total listening hours; the rest resolves to an artist but comes back with no tag at all, mostly names I've barely played.</p>
+        <p>In the end, 1,712 of 2,577 artists resolved via MusicBrainz, covering 99.6% of total listening hours, and 1,137 of those came back with a usable genre tag, covering 92.2% of total listening hours. The remaining 7.8% resolves to an artist but comes back with no tag at all.</p>
       </div>
 
       <h2 class="g-case-subhead">What I didn't force</h2>

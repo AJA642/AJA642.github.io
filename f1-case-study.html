@@ -38,6 +38,10 @@
       <h1 class="g-case-title">Grid, Glory, and the Ones Who Never Won: 75 Years of F1 in SQL</h1>
       <p class="g-case-meta">SQL &middot; Python &middot; pandas &middot; SQLite &middot; Matplotlib &mdash; 1950&ndash;2024</p>
 
+      <div class="g-case-actions">
+        <a href="https://github.com/AJA642/F1-Grid-to-Glory" class="g-btn" target="_blank" rel="noopener">GitHub Repo</a>
+      </div>
+
       <div class="g-case-body">
         <p>If you're a performance analyst working for a team, a broadcaster building a season narrative, or a sponsor deciding where marketing spend actually lands, "F1 is competitive" isn't useful on its own. You need to know how much qualifying still matters before investing in a Saturday specialist, which circuits chew through cars badly enough to justify extra spares, whether a home race is actually worth the premium teams pay for it, and who a pit crew should be benchmarked against. This project runs 75 years of real Grand Prix results through SQL &mdash; window functions, a Pearson correlation built from its raw definition, a self-join for home-race effects &mdash; to answer exactly those questions, and finds a few results that cut against the sport's own popular narrative.</p>
         <p>The dataset is the Ergast F1 database (1,125 races, 26,759 results, 1950 through 2024), loaded into a 12-table SQLite database and queried directly &mdash; no notebook, no framework, plain scripts end to end.</p>
@@ -54,7 +58,7 @@
 
       <h2 class="g-case-subhead">Reliability got worse before it got dramatically better</h2>
       <div class="g-case-body">
-        <p>DNF rate held steady around 50% from the 1950s through the 1970s, then got worse in the 1980s (58.5%) &mdash; the turbo era's notoriously fragile engines &mdash; before falling sharply: 30.2% in the 2000s, 17.9% in the 2010s, and 12.7% in the 2020s so far. A modern grid finishes more than four times as reliably as a 1980s one.</p>
+        <p>DNF rate held steady around 50% from the 1950s through the 1970s, then got worse in the 1980s (58.5%) &mdash; the turbo era's notoriously fragile engines &mdash; before falling sharply: 30.2% in the 2000s, 17.9% in the 2010s, and 12.7% in the 2020s so far. DNFs are down more than fourfold since the 1980s peak.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/f1-case-study/06_dnf_rate_by_decade.png" alt="DNF rate by decade">
@@ -72,7 +76,7 @@
 
       <h2 class="g-case-subhead">No team has dominated an era the way 1950s Ferrari did</h2>
       <div class="g-case-body">
-        <p>Ferrari took 37.5% of all points in the 1950s. By the 2000s their own best decade managed 28.5%, and the most dominant team of the 2020s so far, Red Bull, holds 27.2%. Every decade from the 1980s onward has had a "dominant" constructor topping out in the low-to-mid twenties, a long way from the near-monopolies of F1's first two decades.</p>
+        <p>Ferrari took 37.5% of all points in the 1950s, F1's one real near-monopoly &mdash; their own share collapsed to 16.3% the very next decade, the lowest of any era in the dataset. By the 2000s, their best decade since, they managed 28.5%, and the most dominant team of the 2020s so far, Red Bull, holds 27.2%. Every decade from the 1980s onward has had a "dominant" constructor topping out in the mid-to-high twenties, well below the 1950s peak but with no clean downward trend after it.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/f1-case-study/01_constructor_dominance_by_decade.png" alt="Leading constructor's points share by decade">

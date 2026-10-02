@@ -710,12 +710,19 @@ a.g-caption-link:hover { color: var(--ink); }
 }
 
 .g-case-meta {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.g-case-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .g-case-body p {
@@ -765,7 +772,7 @@ a.g-caption-link:hover { color: var(--ink); }
 
 @media (max-width: 767px) {
   .g-cards-grid { grid-template-columns: 1fr; }
-  .g-hero-actions .g-btn, .g-feature-actions .g-btn { width: 100%; }
+  .g-hero-actions .g-btn, .g-feature-actions .g-btn, .g-case-actions .g-btn { width: 100%; }
   .g-spec-row { flex-wrap: wrap; gap: 1.5rem; }
   .g-skill-row { flex-direction: column; gap: 0.5rem; }
 
@@ -796,7 +803,8 @@ a.g-caption-link:hover { color: var(--ink); }
      to match the tighter phone rhythm. */
   .g-case-page { padding-top: 40px; }
   .g-case-back { margin-bottom: 1.75rem; }
-  .g-case-meta { margin-bottom: 2rem; }
+  .g-case-meta { margin-bottom: 1.25rem; }
+  .g-case-actions { margin-bottom: 1.75rem; }
   .g-case-subhead { margin-top: 2.5rem; margin-bottom: 1rem; }
   .g-case-figure { margin: 1.75rem auto; }
 
