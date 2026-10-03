@@ -709,8 +709,17 @@ a.g-caption-link:hover { color: var(--ink); }
   margin-bottom: 1.25rem;
 }
 
+.g-case-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
 .g-case-meta {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   letter-spacing: 0.13em;
@@ -718,11 +727,96 @@ a.g-caption-link:hover { color: var(--ink); }
   color: var(--muted);
 }
 
-.g-case-actions {
+/* "Project links" — a single understated text trigger, inline with the
+   tech-stack/date line, that glows on hover/focus. On a page with one
+   project it's a plain link straight to the GitHub repo; on the featured
+   project (two links: a live dashboard and a repo) it opens a small
+   dropdown instead of trying to point one link at two destinations. */
+.g-case-links {
+  position: relative;
+  display: inline-block;
+}
+
+.g-case-links-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-color: currentColor;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.g-case-links-trigger .g-case-links-caret {
+  display: inline-block;
+  font-size: 0.7em;
+  transition: transform 0.2s ease;
+}
+
+.g-case-links-trigger:hover,
+.g-case-links-trigger:focus-visible,
+.g-case-links.is-open .g-case-links-trigger {
+  color: var(--accent);
+  text-shadow: 0 0 6px rgba(224, 106, 22, 0.65), 0 0 18px rgba(224, 106, 22, 0.35);
+}
+
+.g-case-links.is-open .g-case-links-trigger .g-case-links-caret {
+  transform: rotate(180deg);
+}
+
+.g-case-links-menu {
+  position: absolute;
+  top: calc(100% + 0.85rem);
+  left: 0;
+  z-index: 20;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  flex-direction: column;
+  min-width: 190px;
+  gap: 0.2rem;
+  padding: 0.4rem;
+  background: var(--surface-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+
+.g-case-links.is-open .g-case-links-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.g-case-links-menu a {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.g-case-links-menu a:hover,
+.g-case-links-menu a:focus-visible {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--accent);
 }
 
 .g-case-body p {
@@ -772,7 +866,7 @@ a.g-caption-link:hover { color: var(--ink); }
 
 @media (max-width: 767px) {
   .g-cards-grid { grid-template-columns: 1fr; }
-  .g-hero-actions .g-btn, .g-feature-actions .g-btn, .g-case-actions .g-btn { width: 100%; }
+  .g-hero-actions .g-btn, .g-feature-actions .g-btn { width: 100%; }
   .g-spec-row { flex-wrap: wrap; gap: 1.5rem; }
   .g-skill-row { flex-direction: column; gap: 0.5rem; }
 
@@ -803,8 +897,7 @@ a.g-caption-link:hover { color: var(--ink); }
      to match the tighter phone rhythm. */
   .g-case-page { padding-top: 40px; }
   .g-case-back { margin-bottom: 1.75rem; }
-  .g-case-meta { margin-bottom: 1.25rem; }
-  .g-case-actions { margin-bottom: 1.75rem; }
+  .g-case-meta-row { flex-direction: column; align-items: flex-start; gap: 1.25rem; margin-bottom: 2rem; }
   .g-case-subhead { margin-top: 2.5rem; margin-bottom: 1rem; }
   .g-case-figure { margin: 1.75rem auto; }
 

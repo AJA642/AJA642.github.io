@@ -36,7 +36,18 @@
 
       <p class="g-caption-link">Case Study &middot; MSc Dissertation</p>
       <h1 class="g-case-title">Performance vs Prestige: A Machine Learning Study of Bias in Football Player Valuations</h1>
-      <p class="g-case-meta">Python &middot; pandas &middot; XGBoost &middot; LightGBM &middot; SHAP &middot; Streamlit &mdash; 2024&ndash;25 season</p>
+      <div class="g-case-meta-row">
+        <p class="g-case-meta">Python &middot; pandas &middot; XGBoost &middot; LightGBM &middot; SHAP &middot; Streamlit &mdash; 2024&ndash;25 season</p>
+        <div class="g-case-links">
+          <button type="button" class="g-case-links-trigger" aria-haspopup="true" aria-expanded="false">
+            Project Links <span class="g-case-links-caret" aria-hidden="true">&#9662;</span>
+          </button>
+          <div class="g-case-links-menu">
+            <a href="https://football-playervaluation.streamlit.app/Player_Explorer" target="_blank" rel="noopener">Live Dashboard</a>
+            <a href="https://github.com/AJA642/Football-PlayerValuation" target="_blank" rel="noopener">GitHub Repo</a>
+          </div>
+        </div>
+      </div>
 
       <div class="g-case-body">
         <p>Transfer fees regularly run into the hundreds of millions, yet how a player's price actually gets set stays mostly a black box. Platforms like Transfermarkt have become the default reference point for market value, produced through a moderated, crowd-sourced consensus rather than a transparent accounting of performance. Separately, sports economics research has shown that non-performance factors &mdash; media coverage, reputational visibility, nationality &mdash; measurably move valuations too. Neither strand decomposes one specific player's number into the part earned by performance and the part attributable to context. This dissertation builds that decomposition: four position-specific machine learning models, trained on 2024&ndash;25 season data, with SHAP used not just to explain the models but to quantify, in actual euros, what a player's league and confederation are doing to their estimated price once performance is already accounted for.</p>

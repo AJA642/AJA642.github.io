@@ -102,4 +102,42 @@
       if (history.pushState) history.pushState(null, '', '#' + id);
     });
   });
+
+  // Case-study "Project Links" dropdown — a single text trigger that
+  // reveals the project's GitHub repo (and live dashboard, where one
+  // exists) instead of showing them as standing buttons on the page.
+  document.querySelectorAll('.g-case-links').forEach(function (wrap) {
+    var trigger = wrap.querySelector('.g-case-links-trigger');
+    var menu = wrap.querySelector('.g-case-links-menu');
+    if (!trigger || !menu) return;
+
+    function closeMenu() {
+      wrap.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+    function openMenu() {
+      wrap.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (wrap.classList.contains('is-open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) closeMenu();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeMenu();
+        trigger.focus();
+      }
+    });
+  });
 })();
