@@ -35,20 +35,20 @@
       <a class="g-case-back" href="index.html#projects">&larr; All Projects</a>
 
       <p class="g-caption-link">Case Study</p>
-      <h1 class="g-case-title">Grid, Glory, and the Ones Who Never Won: 75 Years of F1 in SQL</h1>
+      <h1 class="g-case-title">Grid to Glory: 75 Years of F1 in SQL</h1>
       <div class="g-case-meta-row">
         <p class="g-case-meta">SQL &middot; Python &middot; pandas &middot; SQLite &middot; Matplotlib &mdash; 1950&ndash;2024</p>
         <a href="https://github.com/AJA642/F1-Grid-to-Glory" class="g-case-links-trigger" target="_blank" rel="noopener">GitHub Repo</a>
       </div>
 
       <div class="g-case-body">
-        <p>If you're a performance analyst working for a team, a broadcaster building a season narrative, or a sponsor deciding where marketing spend actually lands, "F1 is competitive" isn't useful on its own. You need to know how much qualifying still matters before investing in a Saturday specialist, which circuits chew through cars badly enough to justify extra spares, whether a home race is actually worth the premium teams pay for it, and who a pit crew should be benchmarked against. This project runs 75 years of real Grand Prix results through SQL &mdash; window functions, a Pearson correlation built from its raw definition, a self-join for home-race effects &mdash; to answer exactly those questions, and finds a few results that cut against the sport's own popular narrative.</p>
-        <p>The dataset is the Ergast F1 database (1,125 races, 26,759 results, 1950 through 2024), loaded into a 12-table SQLite database and queried directly &mdash; no notebook, no framework, plain scripts end to end.</p>
+        <p>If you're a performance analyst working for a team, a broadcaster building a season narrative, or a sponsor deciding where marketing spend actually lands, "F1 is competitive" isn't useful on its own. You need to know how much qualifying still matters before investing in a Saturday specialist, which circuits chew through cars badly enough to justify extra spares, whether a home race is actually worth the premium teams pay for it, and who a pit crew should be benchmarked against. This project runs 75 years of real Grand Prix results through SQL (window functions, a Pearson correlation built from its raw definition, a self-join for home-race effects) to answer exactly those questions, and finds a few results that cut against the sport's own popular narrative.</p>
+        <p>The dataset is the Ergast F1 database (1,125 races, 26,759 results, 1950 through 2024), loaded into a 12-table SQLite database and queried directly. No notebook, no framework, plain scripts end to end.</p>
       </div>
 
       <h2 class="g-case-subhead">Qualifying decides more of the race now than it used to</h2>
       <div class="g-case-body">
-        <p>The popular story is that modern aero rules made overtaking easier, so where you start should matter less than it once did. The data says the opposite. The Pearson correlation between grid position and classified finish is 0.639 before 2010, and 0.758 from 2010 onward &mdash; qualifying performance is a stronger determinant of the race result today than in any prior era in this dataset.</p>
+        <p>The popular story is that modern aero rules made overtaking easier, so where you start should matter less than it once did. The data says the opposite. The Pearson correlation between grid position and classified finish is 0.639 before 2010, and 0.758 from 2010 onward. Qualifying performance is a stronger determinant of the race result today than in any prior era in this dataset.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/f1-case-study/02_grid_vs_finish_correlation.png" alt="Grid to finish position correlation, pre- and post-2010">
@@ -57,7 +57,7 @@
 
       <h2 class="g-case-subhead">Reliability got worse before it got dramatically better</h2>
       <div class="g-case-body">
-        <p>DNF rate held steady around 50% from the 1950s through the 1970s, then got worse in the 1980s (58.5%) &mdash; the turbo era's notoriously fragile engines &mdash; before falling sharply: 30.2% in the 2000s, 17.9% in the 2010s, and 12.7% in the 2020s so far. DNFs are down more than fourfold since the 1980s peak.</p>
+        <p>DNF rate held steady around 50% from the 1950s through the 1970s, then got worse in the 1980s, reaching 58.5% during the turbo era, before falling sharply: 30.2% in the 2000s, 17.9% in the 2010s, and 12.7% in the 2020s so far. DNFs are down more than fourfold since the 1980s peak.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/f1-case-study/06_dnf_rate_by_decade.png" alt="DNF rate by decade">
@@ -66,7 +66,7 @@
 
       <h2 class="g-case-subhead">The pit stop number everyone quotes isn't in this data</h2>
       <div class="g-case-body">
-        <p>Ergast's pit-stop timing measures total pit-lane time, entry to exit, not the sub-two-second stationary tire change F1 broadcasts headline &mdash; even the fastest recorded stop in any year here is 13&ndash;16 seconds. Raw year-over-year averages are also confounded by which circuits, with their different pit lane lengths, were on the calendar that season. Controlling for that by tracking one circuit, Monza, across every season it ran from 2011 to 2024, average duration went from 23.4 seconds to 26.2 seconds: flat to slightly up, not down. Red Bull is the fastest pit crew of the last three seasons at 24.07 seconds average, which at least matches their real-world reputation, and is the more reliable read from this data than any cross-year trend.</p>
+        <p>Ergast's pit-stop timing measures total pit-lane time, entry to exit, not the sub-two-second stationary tire change F1 broadcasts headline. Even the fastest recorded stop in any year here is 13&ndash;16 seconds. Raw year-over-year averages are also confounded by which circuits, with their different pit lane lengths, were on the calendar that season. Controlling for that by tracking one circuit, Monza, across every season it ran from 2011 to 2024, average duration went from 23.4 seconds to 26.2 seconds: flat to slightly up, not down. Red Bull is the fastest pit crew of the last three seasons at 24.07 seconds average, which at least matches their real-world reputation, and is the more reliable read from this data than any cross-year trend.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/f1-case-study/05_pit_stop_trend.png" alt="Average pit stop duration, 2011-2024, all circuits versus Monza only">
@@ -75,7 +75,7 @@
 
       <h2 class="g-case-subhead">No team has dominated an era the way 1950s Ferrari did</h2>
       <div class="g-case-body">
-        <p>Ferrari took 37.5% of all points in the 1950s, F1's one real near-monopoly &mdash; their own share collapsed to 16.3% the very next decade, the lowest of any era in the dataset. By the 2000s, their best decade since, they managed 28.5%, and the most dominant team of the 2020s so far, Red Bull, holds 27.2%. Every decade from the 1980s onward has had a "dominant" constructor topping out in the mid-to-high twenties, well below the 1950s peak but with no clean downward trend after it.</p>
+        <p>Ferrari took 37.5% of all points in the 1950s (F1's one real near-monopoly), then watched that share collapse to 16.3% the very next decade, the lowest of any era in the dataset. By the 2000s, their best decade since, they managed 28.5%, and the most dominant team of the 2020s so far, Red Bull, holds 27.2%. Every decade from the 1980s onward has had a "dominant" constructor topping out in the mid-to-high twenties, well below the 1950s peak but with no clean downward trend after it.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/f1-case-study/01_constructor_dominance_by_decade.png" alt="Leading constructor's points share by decade">
@@ -84,7 +84,7 @@
 
       <h2 class="g-case-subhead">Home advantage is real for some drivers, and backwards for others</h2>
       <div class="g-case-body">
-        <p>Pooled across every driver, the home-race effect is small: +0.16 positions on average, across 692 home-race instances. Split by nationality, the pooled number hides real disagreement. Canadian drivers gained 1.19 positions at home and Japanese drivers 1.17, though both rest on modest samples (14 and 19 instances). French drivers, with a solid 87-instance sample, lost 0.50 positions at their home race, and Italians, at 118 instances, were essentially flat at &minus;0.03. There's no single "home advantage" story here &mdash; it depends who you are.</p>
+        <p>Pooled across every driver, the home-race effect is small: +0.16 positions on average across 692 home-race instances. Split by nationality, the pooled number hides real disagreement. Canadian drivers gained 1.19 positions at home and Japanese drivers 1.17, though both rest on modest samples (14 and 19 instances). French drivers, with a solid 87-instance sample, lost 0.50 positions at their home race, and Italians, at 118 instances, were essentially flat at &minus;0.03. There's no single "home advantage" story here. It depends who you are.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/f1-case-study/04_home_advantage_by_nationality.png" alt="Home-race effect by nationality">
@@ -93,7 +93,7 @@
 
       <h2 class="g-case-subhead">Consistency isn't quite the same as steadiness</h2>
       <div class="g-case-body">
-        <p>Sorted purely by finish-position variance, the most "consistent" driver-seasons mix genuinely dominant championship runs &mdash; Alain Prost 1988, Michael Schumacher 2001 and 2002, Max Verstappen 2023, all near-zero DNF rate and near-guaranteed podiums &mdash; with a few high-DNF seasons that only look steady because the handful of races the driver actually finished happened to be similar results. The chart below separates the two: red marks a season with a DNF rate of 15% or lower. The genuinely steady story is the reliable-car cluster in the bottom right, not the raw ranking on its own.</p>
+        <p>Sorted purely by finish-position variance, the most "consistent" driver-seasons mix genuinely dominant championship runs (Alain Prost 1988, Michael Schumacher 2001 and 2002, Max Verstappen 2023, all near-zero DNF rate and near-guaranteed podiums) with a few high-DNF seasons that only look steady because the handful of races the driver actually finished happened to be similar results. The chart below separates the two: red marks a season with a DNF rate of 15% or lower. The genuinely steady story is the reliable-car cluster in the bottom right, not the raw ranking on its own.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/f1-case-study/03_driver_consistency.png" alt="Driver-season consistency: average finish versus finish-position spread">
@@ -102,17 +102,17 @@
 
       <h2 class="g-case-subhead">The best driver to never win a title</h2>
       <div class="g-case-body">
-        <p>By this measure, it isn't close. Stirling Moss finished championship runner-up four times &mdash; 1955, 1956, 1957, and 1958 &mdash; missing the title by as little as 1 point in his last shot. The single closest near-miss in the dataset by any measure belongs to someone else, though: Felipe Massa's 2008 season, lost by exactly 1 point, at his own home Brazilian Grand Prix, one of the most-replayed moments in the sport's history. The query surfaced it purely on the numbers, which is a reasonable sanity check that the underlying logic is measuring something real. Wolfgang von Trips lost 1961 by that same 1-point margin, in the season in which he was killed at Monza before it ended.</p>
+        <p>By this measure, it isn't close. Stirling Moss finished championship runner-up four times, 1955, 1956, 1957, and 1958, missing the title by as little as 1 point in his last shot. The single closest near-miss in the dataset by any measure belongs to someone else, though: Felipe Massa's 2008 season, lost by exactly 1 point, at his own home Brazilian Grand Prix, one of the most-replayed moments in the sport's history. The query surfaced it purely on the numbers, which is a reasonable sanity check that the underlying logic is measuring something real. Wolfgang von Trips lost 1961 by that same 1-point margin, in the season in which he was killed at Monza before it ended.</p>
       </div>
 
       <h2 class="g-case-subhead">What this means for a team, a broadcaster, or a sponsor</h2>
       <div class="g-case-body">
-        <p>Because the grid-to-finish correlation has risen since 2010, treating Saturday as a formality and Sunday as "where racing happens" works against what the modern data shows &mdash; qualifying is the bigger lever now, not the smaller one. Reliability engineering and spares budgeting are better planned by circuit than by era: DNF rate by circuit ranges from 13.1% at Yas Marina to 62.3% at Long Beach among tracks with meaningful history, mostly street circuits and older layouts, and a flat league-wide rate would miss that spread entirely. And home advantage shouldn't be sold as a universal sponsorship premium &mdash; the pooled effect is small, and two solid-sample nationalities here (French, Italian) show flat-to-negative results at their own home race. A marketing case for a home race is better built on that specific driver's or team's own history than on a generic assumption.</p>
+        <p>Because the grid-to-finish correlation has risen since 2010, treating Saturday as a formality and Sunday as "where racing happens" works against what the modern data shows. Qualifying is the bigger lever now, not the smaller one. Reliability engineering and spares budgeting are better planned by circuit than by era: DNF rate by circuit ranges from 13.1% at Yas Marina to 62.3% at Long Beach among tracks with meaningful history, mostly street circuits and older layouts, and a flat league-wide rate would miss that spread entirely. And home advantage shouldn't be sold as a universal sponsorship premium. The pooled effect is small, and two solid-sample nationalities here (French, Italian) show flat-to-negative results at their own home race. A marketing case for a home race is better built on that specific driver's or team's own history than on a generic assumption.</p>
       </div>
 
       <h2 class="g-case-subhead">Limits</h2>
       <div class="g-case-body">
-        <p>Session-level data has real, disclosed coverage gaps: pit_stops.csv starts in 2011 and lap_times.csv in 1996, because F1 didn't record either electronically before those points, so the pit-stop analysis is scoped to 2011&ndash;2024 only. Pit stop duration itself measures total pit-lane time, not the stationary tire-change time broadcasts headline, and the cross-year trend is further confounded by which circuits were on a given season's calendar, which is why the Monza-only series exists as the more trustworthy read. Home-country mapping is necessarily incomplete: driver nationality and circuit country use different vocabularies, mapped by hand for the roughly 26 nationalities with a matching circuit in this dataset, and dual nationalities or nationalities with no corresponding circuit are excluded entirely rather than guessed at. The consistency and DNF-by-circuit rankings both use fixed minimum-sample floors that structurally favor the modern era, when F1 ran longer seasons and circuits hosted more races. The 2020s bucket covers 2020&ndash;2024 only, five seasons, not a full ten, in every chart and table that groups by decade. And this is results data, not race-conduct data &mdash; there's no lap-by-lap position change or safety-car timing before recent years, so the grid-to-finish correlation measures the outcome relationship, not why it changed; aero rules are the most commonly cited explanation for reduced overtaking in this era, but this dataset can't isolate that specific mechanism from others that shifted over the same period, like tyre rules or track design.</p>
+        <p>Session-level data has real, disclosed coverage gaps: pit_stops.csv starts in 2011 and lap_times.csv in 1996, because F1 didn't record either electronically before those points, so the pit-stop analysis is scoped to 2011&ndash;2024 only. Pit stop duration itself measures total pit-lane time, not the stationary tire-change time broadcasts headline, and the cross-year trend is further confounded by which circuits were on a given season's calendar, which is why the Monza-only series exists as the more trustworthy read. Home-country mapping is necessarily incomplete: driver nationality and circuit country use different vocabularies, mapped by hand for the roughly 26 nationalities with a matching circuit in this dataset, and dual nationalities or nationalities with no corresponding circuit are excluded entirely rather than guessed at. The consistency and DNF-by-circuit rankings both use fixed minimum-sample floors that structurally favor the modern era, when F1 ran longer seasons and circuits hosted more races. The 2020s bucket covers 2020&ndash;2024 only, five seasons, not a full ten, in every chart and table that groups by decade. And this is results data, not race-conduct data. There's no lap-by-lap position change or safety-car timing before recent years, so the grid-to-finish correlation measures the outcome relationship, not why it changed. Aero rules are the most commonly cited explanation for reduced overtaking in this era, but this dataset can't isolate that specific mechanism from others that shifted over the same period, like tyre rules or track design.</p>
       </div>
 
       <a class="g-case-back" href="index.html#projects" style="margin-top: 3.5rem; margin-bottom: 0;">&larr; Back to All Projects</a>
@@ -126,7 +126,7 @@
       <li><a href="mailto:ajabraham.642@gmail.com">Email</a></li>
       <li><a href="https://www.linkedin.com/in/ashish-john-abraham-1352b7222/" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="https://github.com/AJA642" target="_blank" rel="noopener">GitHub</a></li>
-      <li>Bengaluru, India</li>
+      <li>Bangalore, India</li>
     </ul>
     <p class="g-footer-wordmark">Ashish Abraham</p>
     <p class="g-footer-fine">&copy; 2026 Ashish Abraham</p>

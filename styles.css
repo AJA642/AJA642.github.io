@@ -428,7 +428,7 @@ a.g-caption-link:hover { color: var(--ink); }
    blocks, so Education/Experience share the same bottom edge as
    the last line of the bio paragraph.
 --------------------------------------------------------------- */
-#about .g-body { text-align: justify; }
+#about .g-body { display: flex; flex-direction: column; justify-content: space-between; text-align: justify; }
 #about .g-about-grid { align-items: stretch; }
 
 .g-about-side {
@@ -448,8 +448,14 @@ a.g-caption-link:hover { color: var(--ink); }
 
 .g-credential {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 0.85rem;
+}
+
+.g-credential-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
 .g-credential-logo {
@@ -464,6 +470,13 @@ a.g-caption-link:hover { color: var(--ink); }
   font-family: var(--font-text);
   font-size: 1rem;
   color: var(--body);
+}
+
+.g-credential-role {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
 }
 
 /* ---------------------------------------------------------------

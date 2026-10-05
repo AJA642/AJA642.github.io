@@ -42,12 +42,12 @@
       </div>
 
       <div class="g-case-body">
-        <p>Dubai plans to shift its main airport operations from Dubai International (DXB) to Al Maktoum International (DWC) over roughly the next decade. That's a large claim to take on faith, so for my MSc Programming for Data Science coursework I went looking for actual flight data to see what the numbers say about it. This project reworks that coursework into two parts: eight years of monthly UAE flight counts from Bayanat.ae (January 2018 through December 2025, 96 months), and a second, separately sourced look at DXB and DWC's own passenger and capacity figures, since the first dataset turns out not to answer the DXB/DWC question on its own. Both parts live in a single notebook, <code>AJA_Prog4DS_Project_v3.ipynb</code>, and the original coursework submission is kept in <code>original/</code> for comparison.</p>
+        <p>Dubai plans to shift its main airport operations from Dubai International (DXB) to Al Maktoum International (DWC) over roughly the next decade. That's a big claim to take on faith, so for my MSc Programming for Data Science coursework I went looking for actual flight data to see what the numbers say about it. This project reworks that coursework into two parts: eight years of monthly UAE flight counts from Bayanat.ae (January 2018 through December 2025, 96 months), and a second, separately sourced look at DXB and DWC's own passenger and capacity figures, since the first dataset turns out not to answer the DXB/DWC question on its own. Both parts live in a single notebook, <code>AJA_Prog4DS_Project_v3.ipynb</code>, and the original coursework submission is kept in <code>original/</code> for comparison.</p>
       </div>
 
       <h2 class="g-case-subhead">Getting the scope right</h2>
       <div class="g-case-body">
-        <p>I started out treating the Bayanat dataset as DXB traffic, since Dubai is the obvious reason to care about UAE aviation data and the dataset's own description doesn't name an airport. The numbers said otherwise. The UAE's statistics centre reports 694,050 civil aircraft movements across all UAE airports in 2023, 771,800 in 2024, and 828,570 in 2025, against 694,130, 775,248, and 833,789 in this file, close enough across three separate years to be measuring the same thing. Dubai Airports' own figures for DXB alone are 440,300 movements in 2024 and 454,800 in 2025, only about 55% to 57% of this file's totals for those years. So the dataset covers UAE airports as a whole, not DXB by itself, with DXB as the largest part of it. Everything below is framed as UAE-wide for that reason, and it's also why a second part exists: this correction meant the first dataset couldn't carry the DXB/DWC question on its own.</p>
+        <p>I started out treating the Bayanat dataset as DXB traffic, since Dubai is the obvious reason to care about UAE aviation data and the dataset's own description doesn't name an airport. The numbers said otherwise. The UAE's statistics centre reports 694,050 civil aircraft movements across all UAE airports in 2023, 771,800 in 2024, and 828,570 in 2025, against 694,130, 775,248, and 833,789 in this file. Close enough across three separate years to be measuring the same thing. Dubai Airports' own figures for DXB alone are 440,300 movements in 2024 and 454,800 in 2025, only about 55% to 57% of this file's totals for those years. So the dataset covers UAE airports as a whole, not DXB by itself, with DXB as the largest part of it. Everything below is framed as UAE-wide for that reason, and it's also why a second part exists: this correction meant the first dataset couldn't carry the DXB/DWC question on its own.</p>
       </div>
 
       <h2 class="g-case-subhead">Eight years, one clear trend</h2>
@@ -76,7 +76,7 @@
         <figcaption>Seasonal index by month, non-COVID years only</figcaption>
       </figure>
       <div class="g-case-body">
-        <p>What's left once the pandemic years are out of the average is a real but modest pattern. December runs about 8% above an average month, which fits the holiday period, February sits about 8% below (partly because it's the shortest month), and April through June run about 4% below. January through November otherwise stays close to flat. The UAE doesn't really have an aviation off-season. It has one mild lift around December.</p>
+        <p>What's left once the pandemic years are out of the average is a real but modest pattern. December runs about 8% above an average month, which fits the holiday period. February sits about 8% below (partly because it's the shortest month), and April through June run about 4% below. January through November otherwise stays close to flat. The UAE doesn't really have an aviation off-season. It has one mild lift around December.</p>
       </div>
 
       <h2 class="g-case-subhead">COVID, up close</h2>
@@ -110,8 +110,8 @@
       <h2 class="g-case-subhead">The projection, and where the first version went wrong</h2>
       <div class="g-case-body">
         <p>Part of this project asks what flight volume might look like by 2032, as background for a move that's itself described as playing out over roughly a decade. My first attempt took each year's growth rate and averaged them: -5.0% in 2019, -52.8% in 2020, +31.7% in 2021, +50.5% in 2022, +20.1% in 2023, +11.7% in 2024, and +7.6% in 2025 (2025 itself estimated from its first quarter at the time, a shortcut that turned out to land about 3% below where 2025 actually finished). Averaged straight across, those rates gave 8.6% a year, compounded seven years out to a 2032 estimate of 1.43 million flights.</p>
-        <p>That number is wrong in an instructive way. Dropping just the 2020 crash from the average doesn't fix it: the average jumps to 19.4%, because the rebound in 2021 and 2022 off a depressed base stays in, and a rebound isn't the same thing as normal growth. Compound growth from 2018 to 2025 alone, skipping the COVID years entirely, comes out to 3.6% a year, under half of what the naive average said. Averaging year-on-year rates blends a collapse, a rebound, and a slowing normal growth path into one number, and that number is a poor input for a seven-year projection.</p>
-        <p>The fix was to stop averaging growth rates and fit a trend line to the yearly totals instead, using only the years outside the COVID window: 2018, 2019, 2023, 2024, 2025. The COVID years still appear in the plot below, they just don't pull the line.</p>
+        <p>That's wrong, in an instructive way. Dropping just the 2020 crash from the average doesn't fix it: the average jumps to 19.4%, because the rebound in 2021 and 2022 off a depressed base stays in, and a rebound isn't the same thing as normal growth. Compound growth from 2018 to 2025 alone, skipping the COVID years entirely, comes out to 3.6% a year, under half of what the naive average said. Averaging year-on-year rates blends a collapse, a rebound, and a slowing normal growth path into one number, and that's a poor input for a seven-year projection.</p>
+        <p>The fix was to stop averaging growth rates and fit a trend line to the yearly totals instead, using only the years outside the COVID window: 2018, 2019, 2023, 2024, 2025. The COVID years still appear in the plot below. They just don't pull the line.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/dxb-case-study/07_trend_projection.png" alt="Flight trend and projection with uncertainty, 2018-2032">
@@ -138,7 +138,7 @@
 
       <h2 class="g-case-subhead">DXB against its own ceiling, and what DWC is being built for</h2>
       <div class="g-case-body">
-        <p>The number that actually matters for the DWC question isn't how many passengers DXB carried, but how close that is to what DXB can physically hold. Dubai Airports' CEO stated in September 2026 that DXB's maximum infrastructure capacity is around 115 million passengers a year, separate from the airport's forecast to reach 100 million by the end of 2027, which is a traffic milestone, not the capacity ceiling. Against that 115 million ceiling, DXB's 95.2 million in 2025 puts it at about 83% utilization: well used, but not yet out of room.</p>
+        <p>The number that actually matters for the DWC question isn't how many passengers DXB carried, but how close that is to what DXB can physically hold. Dubai Airports' CEO stated in September 2026 that DXB's maximum infrastructure capacity is around 115 million passengers a year. That's separate from the airport's forecast to reach 100 million by the end of 2027, which is a traffic milestone, not the capacity ceiling. Against that 115 million ceiling, DXB's 95.2 million in 2025 puts it at about 83% utilization: well used, but not yet out of room.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/dxb-case-study/09_dxb_dwc_capacity.png" alt="DXB traffic against capacity, and DWC's planned scale">
@@ -150,12 +150,12 @@
 
       <h2 class="g-case-subhead">What this does, and doesn't, show</h2>
       <div class="g-case-body">
-        <p>Put together, the two parts show real and growing demand (DXB at a record 95.2 million passengers in 2025, still climbing) running up against a finite capacity ceiling (115 million), alongside a deliberate, already-underway plan to build elsewhere at a scale DXB could never reach on its own. That combination is evidence that the demand and the planned capacity are both real. Whether moving to DWC is the right call in economic or operational terms is a separate question, and answering it would need things this project doesn't have: long-term demand forecasts, what the expansion costs against alternatives, and how Dubai's connectivity needs are expected to change. This project can speak to the demand-and-capacity backdrop behind the DWC decision. The decision itself is outside what this data can settle.</p>
+        <p>Put together, the two parts show real and growing demand (DXB at a record 95.2 million passengers in 2025, still climbing) running up against a finite capacity ceiling (115 million). Alongside that is a deliberate, already-underway plan to build elsewhere at a scale DXB could never reach on its own. That combination is evidence that the demand and the planned capacity are both real. Whether moving to DWC is the right call in economic or operational terms is a separate question, and answering it would need things this project doesn't have: long-term demand forecasts, what the expansion costs against alternatives, and how Dubai's connectivity needs are expected to change. This project can speak to the demand-and-capacity backdrop behind the DWC decision. The decision itself is outside what this data can settle.</p>
       </div>
 
       <h2 class="g-case-subhead">Limits</h2>
       <div class="g-case-body">
-        <p>A few limits are worth stating plainly. The Bayanat series is short, 96 months, so the projection's range rests on five yearly points once the COVID years are set aside, and a longer run of normal years would narrow it considerably. Part 1's dataset has no passenger, gate, or runway figures, only flight counts, which is part of why Part 2 exists at all. Part 2 itself isn't a single sourced dataset; it's compiled from public press releases and fact pages, with one year of DXB passenger data coming from a third-party aggregator rather than Dubai Airports directly. None of that changes the overall picture, but it's why this project treats its own projection as a range to reason with rather than a number to repeat.</p>
+        <p>A few limits are worth stating plainly. The Bayanat series is short, 96 months, so the projection's range rests on five yearly points once the COVID years are set aside, and a longer run of normal years would narrow it considerably. Part 1's dataset has no passenger, gate, or runway figures, only flight counts, which is part of why Part 2 exists at all. Part 2 itself isn't a single sourced dataset. It's compiled from public press releases and fact pages, with one year of DXB passenger data coming from a third-party aggregator rather than Dubai Airports directly. None of that changes the overall picture, but it's why this project treats its own projection as a range to reason with rather than a number to repeat.</p>
       </div>
 
       <a class="g-case-back" href="index.html#projects" style="margin-top: 3.5rem; margin-bottom: 0;">&larr; Back to All Projects</a>
@@ -169,7 +169,7 @@
       <li><a href="mailto:ajabraham.642@gmail.com">Email</a></li>
       <li><a href="https://www.linkedin.com/in/ashish-john-abraham-1352b7222/" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="https://github.com/AJA642" target="_blank" rel="noopener">GitHub</a></li>
-      <li>Bengaluru, India</li>
+      <li>Bangalore, India</li>
     </ul>
     <p class="g-footer-wordmark">Ashish Abraham</p>
     <p class="g-footer-fine">&copy; 2026 Ashish Abraham</p>

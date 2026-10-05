@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
 <title>Beyond Wrapped: 7.5 Years of My Own Spotify Data — Ashish Abraham</title>
-<meta name="description" content="A personal analytics case study on 7.5 years of my own Spotify listening history — genre trends, artist trends, listening depth, seasonality, and an EDM deep dive.">
+<meta name="description" content="A personal analytics case study on 7.5 years of my own Spotify listening history: genre trends, artist trends, listening depth, seasonality, and an EDM deep dive.">
 <meta property="og:title" content="Beyond Wrapped: 7.5 Years of My Own Spotify Data">
 <meta property="og:description" content="A personal analytics project on 7.5 years of my own Spotify listening history, exploring genre trends, artist trends, listening depth, and seasonality before EDM earns its own deep dive.">
 <meta property="og:type" content="article">
@@ -42,8 +42,8 @@
       </div>
 
       <div class="g-case-body">
-        <p>Every December, Spotify Wrapped hands you a few shareable charts and calls it a year in review. I wanted the real version: every play going back to when I first started using the platform, not the highlight reel. So I pulled my own Extended Streaming History, Spotify's full data export rather than the marketing one, and built a project around it: 7,398.8 hours of filtered listening (7,504 hours before I drop anything under 30 seconds), 2,577 artists, and 9,859 distinct tracks, spanning February 2019 through early September this year.</p>
-        <p>One rule going in: I like EDM, it's probably my favorite genre, and I didn't want that to be the reason this analysis exists. So the project starts with genre trends, artist trends, how long I actually listen to a given song, and how my listening changes across the calendar year. EDM only gets its own section once the data itself says it's earned one. Every chart and number below comes from a single notebook that runs top to bottom in under five seconds and never touches a live API &mdash; it loads the same cached data the rest of this project already produced.</p>
+        <p>Every December, Spotify Wrapped hands you a few shareable charts and calls it a year in review. I just wanted the real version: every play going back to when I first started using the platform, not the highlight reel. So I pulled my own Extended Streaming History, Spotify's full data export rather than the marketing one, and built a project around it: 7,399 hours of filtered listening (7,504 hours before I drop anything under 30 seconds), 2,577 artists, and 9,859 distinct tracks, spanning February 2019 through early September this year.</p>
+        <p>One rule going in: I like EDM, it's probably my favorite genre, and I didn't want that to be the reason this analysis exists. So the project starts with genre trends, artist trends, how long I actually listen to a given song, and how my listening changes across the calendar year. EDM only gets its own section once the data itself says it's earned one. Every chart and number below comes from a single notebook that runs top to bottom in under five seconds and never touches a live API. It loads the same cached data the rest of this project already produced.</p>
       </div>
 
       <h2 class="g-case-subhead">Where my taste actually moved</h2>
@@ -67,7 +67,7 @@
       <h2 class="g-case-subhead">How long I actually listen to a song</h2>
       <div class="g-case-body">
         <p>Across every play that clears my 30-second cutoff, the average length is 190 seconds, about 3.2 minutes, with the median close behind at 200 seconds. That's close to a full track, not a quick skim.</p>
-        <p>Concentration at the track level looks nothing like concentration at the artist level. My top 10 artists alone account for 28.4% of all listening hours, and my top 100 for 67.8%. My top 10 tracks, by contrast, account for only 7.2%, and my top 100 tracks, out of 9,859 total, add up to just 25.6%. I clearly have favorite artists, but not a small set of favorite songs I loop obsessively &mdash; I go deep into an artist's catalog rather than replaying one or two hits.</p>
+        <p>Concentration at the track level looks nothing like concentration at the artist level. My top 10 artists alone account for 28.4% of all listening hours, and my top 100 for 67.8%. My top 10 tracks, by contrast, account for only 7.2%, and my top 100 tracks, out of 9,859 total, add up to just 25.6%. I clearly have favorite artists, but not a small set of favorite songs I loop obsessively. I go deep into an artist's catalog rather than replaying one or two hits.</p>
         <p>The other side of that same picture: 49.4% of all distinct tracks, 4,869 of 9,859, were played exactly once. The median track was played twice. The single most-replayed track in the whole history is "Levels - Original Version" by Avicii, at 2,098 plays, nearly triple anything else.</p>
       </div>
       <figure class="g-case-figure">
@@ -79,12 +79,12 @@
         <figcaption>Distribution of plays per track, log scale</figcaption>
       </figure>
       <div class="g-case-body">
-        <p>Counting tracks honestly turned out to be less obvious than it sounds. Grouped by title and artist, "Stronger" by Kanye West totals 81.5 hours, matching the project's existing numbers. Grouped instead by Spotify's own track ID, the single largest version of "Stronger" accounts for only 60.7 hours, because several distinct catalog entries (different masters or re-releases, most likely) share that title and artist. Both numbers are real; they answer slightly different questions. The project's unique-track count of 9,859 uses the track-ID version, for consistency with the rest of the analysis.</p>
+        <p>Counting tracks honestly turned out to be less obvious than it sounds. Grouped by title and artist, "Stronger" by Kanye West totals 81.5 hours, matching the project's existing numbers. Grouped instead by Spotify's own track ID, the single largest version of "Stronger" accounts for only 60.7 hours, because several distinct catalog entries (different masters or re-releases, most likely) share that title and artist. Both numbers are real. They just answer slightly different questions. The project's unique-track count of 9,859 uses the track-ID version, for consistency with the rest of the analysis.</p>
       </div>
 
       <h2 class="g-case-subhead">Does my listening change with the seasons?</h2>
       <div class="g-case-body">
-        <p>I'd never actually checked whether my listening changes with the calendar, independent of which year it was. It does, and not by a small amount: March (10.5% of all hours), July (10.1%), and June (9.6%) are consistently the highest months, while October (6.5%) and November (6.7%) are consistently the lowest. Because a single year, 2022, holds more than a quarter of all lifetime hours, I re-ran the comparison with 2022 removed entirely, to make sure that one year wasn't driving the whole pattern. It wasn't: July, June, and March are still the top three months with 2022 excluded, and the highest month is still about 1.93 times the lowest. Whatever is behind it, weather, school or work calendars, some yearly rhythm I'm not consciously aware of, it's a real recurring pattern, not a one-year artifact.</p>
+        <p>I'd never actually checked whether my listening changes with the calendar, independent of which year it was. It does, and not by a small amount: March (10.5% of all hours), July (10.1%), and June (9.6%) are consistently the highest months, while October (6.5%) and November (6.7%) are consistently the lowest. Because a single year, 2022, holds more than a quarter of all lifetime hours, I re-ran the comparison with 2022 removed entirely, to make sure that one year wasn't driving the whole pattern. It wasn't: July, June, and March are still the top three months with 2022 excluded, and the highest month is still about 1.93 times the lowest. Whatever's behind it, weather, school or work calendars, some yearly rhythm I'm not consciously aware of, it's a real recurring pattern, not a one-year artifact.</p>
       </div>
       <figure class="g-case-figure">
         <img src="assets/spotify-case-study/05_seasonality_by_month.png" alt="Total listening hours by calendar month, all years combined">
@@ -106,7 +106,7 @@
 
       <h2 class="g-case-subhead">Why EDM, specifically</h2>
       <div class="g-case-body">
-        <p>None of the above was arranged to set up EDM. It earns this section because the genre-trends numbers put it there on their own: it's the single largest genre bucket in every year of this dataset, from a high of 56.2% in 2020 down to roughly a quarter of listening in the most recent full years. That is the actual justification for a deep dive, not that it happens to be my favorite genre.</p>
+        <p>None of the above was arranged to set up EDM. It earns this section because the genre-trends numbers put it there on their own: it's the single largest genre bucket in every year of this dataset, from a high of 56.2% in 2020 down to roughly a quarter of listening in the most recent full years. That's the actual justification for a deep dive, not that it happens to be my favorite genre.</p>
       </div>
 
       <h2 class="g-case-subhead">The EDM deep dive</h2>
@@ -145,7 +145,7 @@
 
       <h2 class="g-case-subhead">What I didn't force</h2>
       <div class="g-case-body">
-        <p>I also looked at whether my listening skews toward new releases or older catalog material, using each track's original release year. I dropped it. MusicBrainz routinely returns a dozen versions of the same track, remasters, reissues, deluxe editions, all tied at the same relevance score with release dates a decade or more apart; a plain search for "Levels" came back six years off from its actual 2011 release. There wasn't a reliable way around that short of a much bigger undertaking, so I reported the attempt and the reason it didn't work instead of publishing a number I didn't trust.</p>
+        <p>I also looked at whether my listening skews toward new releases or older catalog material, using each track's original release year. I dropped it. MusicBrainz routinely returns a dozen versions of the same track, remasters, reissues, deluxe editions, all tied at the same relevance score with release dates a decade or more apart. A plain search for "Levels" came back six years off from its actual 2011 release. There wasn't a reliable way around that short of a much bigger undertaking, so I reported the attempt and the reason it didn't work instead of publishing a number I didn't trust.</p>
       </div>
 
       <h2 class="g-case-subhead">What's next</h2>
@@ -164,7 +164,7 @@
       <li><a href="mailto:ajabraham.642@gmail.com">Email</a></li>
       <li><a href="https://www.linkedin.com/in/ashish-john-abraham-1352b7222/" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="https://github.com/AJA642" target="_blank" rel="noopener">GitHub</a></li>
-      <li>Bengaluru, India</li>
+      <li>Bangalore, India</li>
     </ul>
     <p class="g-footer-wordmark">Ashish Abraham</p>
     <p class="g-footer-fine">&copy; 2026 Ashish Abraham</p>
