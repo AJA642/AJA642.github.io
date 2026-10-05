@@ -857,7 +857,7 @@ a.g-caption-link:hover { color: var(--ink); }
    full article width (a simpler chart, or one with a lot of empty
    canvas around the actual data, like a pie chart). */
 .g-case-figure.is-size-sm { max-width: 58ch; }
-.g-case-figure.is-size-xs { max-width: 40ch; }
+.g-case-figure.is-size-xs { max-width: 48ch; }
 .g-case-figure img {
   width: 100%;
   display: block;
@@ -894,6 +894,16 @@ a.g-caption-link:hover { color: var(--ink); }
    out just gets more surrounding margin instead of a taller cell. */
 .g-case-figure-grid.is-cols-4 .g-case-figure img {
   aspect-ratio: 1800 / 1260;
+  object-fit: contain;
+  background: #ffffff;
+}
+.g-case-figure-grid.is-aspect-tracks .g-case-figure img {
+  aspect-ratio: 982 / 582;
+  object-fit: contain;
+  background: #ffffff;
+}
+.g-case-figure-grid.is-aspect-edm .g-case-figure img {
+  aspect-ratio: 982 / 682;
   object-fit: contain;
   background: #ffffff;
 }
