@@ -67,10 +67,24 @@
       <div class="g-case-body">
         <p>For Forwards, age and per-90 output (non-penalty expected goals, shots, touches in the box) dominate the SHAP summary, as you'd expect. But the Premier League dummy sits in the top three features by mean impact, with a spread almost as wide as the output stats around it: a cluster of strongly negative points (players not in the Premier League) and a separate cluster pushed firmly positive. The same pattern repeats for Midfielders, Defenders and Goalkeepers in their own SHAP summaries, with league features ranking right alongside the position's own output stats. Age, playing time and position-specific output (progressive passes for midfielders, tackles and interceptions for defenders, save percentage for goalkeepers) are consistently the biggest contributors overall. League affiliation is consistently among them too, not some minor adjustment at the margins.</p>
       </div>
-      <figure class="g-case-figure">
-        <img src="assets/football-case-study/05_shap_summary_fwd.png" alt="SHAP summary plot for the Forwards model, showing the 15 features with the largest mean absolute contribution to predicted market value">
-        <figcaption>SHAP summary, Forwards model &mdash; top 15 features by mean absolute contribution</figcaption>
-      </figure>
+      <div class="g-case-figure-grid is-cols-4">
+        <figure class="g-case-figure">
+          <img src="assets/football-case-study/05a_shap_summary_fwd.png" alt="SHAP summary plot for the Forwards model, showing the 15 features with the largest mean absolute contribution to predicted market value">
+          <figcaption>SHAP summary, Forwards model</figcaption>
+        </figure>
+        <figure class="g-case-figure">
+          <img src="assets/football-case-study/05b_shap_summary_mid.png" alt="SHAP summary plot for the Midfielders model, showing the 15 features with the largest mean absolute contribution to predicted market value">
+          <figcaption>SHAP summary, Midfielders model</figcaption>
+        </figure>
+        <figure class="g-case-figure">
+          <img src="assets/football-case-study/05c_shap_summary_def.png" alt="SHAP summary plot for the Defenders model, showing the 15 features with the largest mean absolute contribution to predicted market value">
+          <figcaption>SHAP summary, Defenders model</figcaption>
+        </figure>
+        <figure class="g-case-figure">
+          <img src="assets/football-case-study/05d_shap_summary_gk.png" alt="SHAP summary plot for the Goalkeepers model, showing the 15 features with the largest mean absolute contribution to predicted market value">
+          <figcaption>SHAP summary, Goalkeepers model</figcaption>
+        </figure>
+      </div>
 
       <h2 class="g-case-subhead">Premier League affiliation is worth millions, in every position</h2>
       <div class="g-case-body">
@@ -86,10 +100,16 @@
       <div class="g-case-body">
         <p>Confederation effects are one to two orders of magnitude smaller than league effects for Defenders and Midfielders, and exactly zero for Forwards and Goalkeepers. That's a genuine, mathematically grounded property of those two trained models, not a rounding artefact: their final tree ensembles never once pick a confederation feature as a split point. Midfielders show the largest and most structured confederation pattern of the four, with CAF (Africa) carrying a notably negative mean contribution (&minus;&euro;646K) against small positive contributions for UEFA, CONMEBOL, CONCACAF and AFC. Several of these subgroups are small (AFC n=12, CONCACAF n=13, OFC n=1 for midfielders), so this is better read as a real but statistically fragile pattern than an established structural finding.</p>
       </div>
-      <figure class="g-case-figure">
-        <img src="assets/football-case-study/03_confederation_shap_midfielders.png" alt="Confederation-associated SHAP contribution for midfielders, by confederation">
-        <figcaption>Confederation-associated SHAP contribution, Midfielders &mdash; the largest and most structured of the four positions</figcaption>
-      </figure>
+      <div class="g-case-figure-grid is-cols-2">
+        <figure class="g-case-figure">
+          <img src="assets/football-case-study/06a_confederation_shap_midfielders.png" alt="Confederation-associated SHAP contribution for midfielders, by confederation">
+          <figcaption>Confederation-associated SHAP contribution, Midfielders &mdash; the largest and most structured of the four positions</figcaption>
+        </figure>
+        <figure class="g-case-figure">
+          <img src="assets/football-case-study/06b_confederation_shap_defenders.png" alt="Confederation-associated SHAP contribution for defenders, by confederation">
+          <figcaption>Confederation-associated SHAP contribution, Defenders &mdash; one to two orders of magnitude smaller than the league effect</figcaption>
+        </figure>
+      </div>
 
       <h2 class="g-case-subhead">Who the model says is underpriced</h2>
       <div class="g-case-body">

@@ -869,6 +869,37 @@ a.g-caption-link:hover { color: var(--ink); }
   color: var(--muted);
 }
 
+/* Multi-chart case-study figure grids — for a section where several
+   same-family chart variants (by position, league, or model) sit
+   side by side instead of stacked. */
+.g-case-figure-grid {
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  display: grid;
+  gap: 2rem 1.5rem;
+}
+.g-case-figure-grid .g-case-figure {
+  margin: 0;
+  max-width: none;
+}
+/* The four SHAP-summary source images don't share one native aspect
+   ratio (the Forwards export is squarer than the other three), which
+   threw the 2x2 grid rows out of alignment. Lock every image in that
+   grid to the more common ratio and letterbox in white so the odd one
+   out just gets more surrounding margin instead of a taller cell. */
+.g-case-figure-grid.is-cols-4 .g-case-figure img {
+  aspect-ratio: 1800 / 1260;
+  object-fit: contain;
+  background: #ffffff;
+}
+.g-case-figure-grid.is-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.g-case-figure-grid.is-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.g-case-figure-grid.is-cols-4 { grid-template-columns: repeat(2, 1fr); }
+.g-case-figure-grid.is-cols-5 { grid-template-columns: repeat(6, 1fr); }
+.g-case-figure-grid.is-cols-5 .g-case-figure { grid-column: span 2; }
+.g-case-figure-grid.is-cols-5 .g-case-figure:nth-child(4) { grid-column: 2 / span 2; }
+.g-case-figure-grid.is-cols-5 .g-case-figure:nth-child(5) { grid-column: 4 / span 2; }
+
 /* ---------------------------------------------------------------
    Breakpoints
 --------------------------------------------------------------- */
@@ -913,6 +944,12 @@ a.g-caption-link:hover { color: var(--ink); }
   .g-case-meta-row { flex-direction: column; align-items: flex-start; gap: 1.25rem; margin-bottom: 2rem; }
   .g-case-subhead { margin-top: 2.5rem; margin-bottom: 1rem; }
   .g-case-figure { margin: 1.75rem auto; }
+  .g-case-figure-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
+    margin: 1.75rem auto;
+  }
+  .g-case-figure-grid .g-case-figure { grid-column: auto !important; }
 
   /* Highlight card and cards grid — less padding, tighter gap so more
      of each card is visible per scroll. */
