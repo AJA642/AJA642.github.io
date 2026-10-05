@@ -853,6 +853,11 @@ a.g-caption-link:hover { color: var(--ink); }
 }
 
 .g-case-figure { max-width: 85ch; margin: 2.5rem auto; }
+/* Size modifiers for a single case-study figure that doesn't need the
+   full article width (a simpler chart, or one with a lot of empty
+   canvas around the actual data, like a pie chart). */
+.g-case-figure.is-size-sm { max-width: 58ch; }
+.g-case-figure.is-size-xs { max-width: 40ch; }
 .g-case-figure img {
   width: 100%;
   display: block;
