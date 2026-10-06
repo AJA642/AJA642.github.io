@@ -466,8 +466,8 @@ a.g-caption-link:hover { color: var(--ink); }
    featured project's stats are folded into the description instead.
    No forced aspect-ratio/cover crop here — the image renders at its
    own natural proportions, in full, at the column's width. */
-.g-feature-photo { display: block; background: var(--surface-soft); }
-.g-feature-photo img { width: 100%; height: auto; display: block; }
+.g-feature-photo { display: block; background: var(--surface-soft); height: 100%; overflow: hidden; }
+.g-feature-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ---------------------------------------------------------------
    Section rhythm — 120px, the whitespace IS the brand
@@ -560,7 +560,7 @@ a.g-caption-link:hover { color: var(--ink); }
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .g-feature-title {
