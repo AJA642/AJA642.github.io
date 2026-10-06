@@ -19,6 +19,8 @@
   --on-primary:     #000000;
   --link:           #c3d9f3;
   --accent:         #e06a16;
+  --hover-tint:     rgba(255, 255, 255, 0.08);
+  --shadow-elevated: rgba(0, 0, 0, 0.45);
 
   --font-display: 'Saira Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-text:    'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -28,6 +30,40 @@
   --section: 120px;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------------------------------------------------------------
+   Light theme -- same tokens, reversed. Toggled by setting
+   data-theme="light" on <html> (see the nav theme button + script.js);
+   the base :root above already covers dark, so this is the only
+   override block needed.
+--------------------------------------------------------------- */
+:root[data-theme="light"] {
+  --ink:            #0a0a0a;
+  --body:           #3d3d3d;
+  --body-strong:    #1a1a1a;
+  --muted:          #6b6b6b;
+  --muted-soft:     #8f8f8f;
+  --hairline:       #e3e3e3;
+  --hairline-strong:#cccccc;
+  --canvas:         #ffffff;
+  --surface-soft:   #f6f6f6;
+  --surface-card:   #f0f0f0;
+  --surface-elevated:#ebebeb;
+  --on-primary:     #ffffff;
+  --link:           #1d5fa8;
+  --accent:         #c85a0f;
+  --hover-tint:     rgba(0, 0, 0, 0.045);
+  --shadow-elevated: rgba(0, 0, 0, 0.12);
+}
+
+/* A soft cross-fade on the handful of elements with a visible fill or
+   border, so flipping the toggle reads as a transition rather than a
+   hard cut. Transform/opacity-based animations elsewhere (reveal,
+   scroll cue) are untouched since this only covers color properties. */
+body, .g-nav, .g-footer, .g-btn, .g-highlight-card, .g-card,
+.g-case-figure img, .g-case-links-menu, .g-theme-toggle {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 /* ---------------------------------------------------------------
@@ -66,7 +102,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------------------------------------------------------------
-   Base — pure black canvas, no light mode
+   Base — canvas colour comes entirely from the --canvas token, so
+   the light theme above is a straight token swap, not a parallel
+   stylesheet.
 --------------------------------------------------------------- */
 body {
   background: var(--canvas);
@@ -145,6 +183,42 @@ button:focus-visible,
 
 .g-nav-links { display: flex; align-items: center; gap: 2rem; }
 
+/* Theme toggle -- small outlined icon button, same visual language as
+   the hero's scroll cue (circle, 1px --ink border). Shows the sun icon
+   when light mode is active and the moon icon when dark mode is active;
+   script.js swaps the html[data-theme] attribute and this follows it
+   purely in CSS, no class toggling needed on the button itself. */
+.g-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.g-theme-toggle:hover { background: var(--hover-tint); border-color: var(--ink); }
+
+.g-theme-icon {
+  width: 15px;
+  height: 15px;
+}
+.g-theme-icon--sun { display: none; }
+.g-theme-icon--moon { display: block; }
+:root[data-theme="light"] .g-theme-icon--sun { display: block; }
+:root[data-theme="light"] .g-theme-icon--moon { display: none; }
+
+/* Same swap pattern, generalised for any other asset that only reads
+   correctly against one background (currently the University of
+   Birmingham crest and the Spotify project-card photo, which each
+   ship a dark-background and a light-background version). */
+.g-theme-asset.g-theme-asset--light { display: none; }
+:root[data-theme="light"] .g-theme-asset.g-theme-asset--dark { display: none; }
+:root[data-theme="light"] .g-theme-asset.g-theme-asset--light { display: block; }
+
 .g-wordmark {
   font-family: var(--font-display);
   font-size: 1.0625rem;
@@ -192,7 +266,7 @@ button:focus-visible,
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
-.g-btn:hover { background: rgba(255, 255, 255, 0.08); }
+.g-btn:hover { background: var(--hover-tint); }
 
 .g-btn-disabled {
   border-color: var(--hairline-strong);
@@ -246,7 +320,7 @@ a.g-caption-link:hover { color: var(--ink); }
   animation: g-scroll-cue-bounce 2.2s ease-in-out infinite;
   transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.3s ease;
 }
-.g-scroll-cue:hover { background: rgba(255, 255, 255, 0.08); }
+.g-scroll-cue:hover { background: var(--hover-tint); }
 .g-scroll-cue.is-hidden { opacity: 0; pointer-events: none; }
 
 @keyframes g-scroll-cue-bounce {
@@ -798,9 +872,9 @@ a.g-caption-link:hover { color: var(--ink); }
   gap: 0.2rem;
   padding: 0.4rem;
   background: var(--surface-elevated);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--hairline-strong);
   border-radius: 8px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 32px var(--shadow-elevated);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-6px);
@@ -828,7 +902,7 @@ a.g-caption-link:hover { color: var(--ink); }
 
 .g-case-links-menu a:hover,
 .g-case-links-menu a:focus-visible {
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--hover-tint);
   color: var(--accent);
 }
 

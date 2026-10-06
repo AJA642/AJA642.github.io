@@ -140,4 +140,36 @@
       }
     });
   });
+
+  // Theme toggle — flips html[data-theme] between the default (dark,
+  // no attribute needed) and "light", persists the choice, and keeps
+  // the button's aria state and label in sync. The inline script in
+  // <head> already applied any stored choice before first paint, so
+  // this only needs to wire up the click.
+  var themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    var root = document.documentElement;
+
+    function currentTheme() {
+      return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    }
+    function syncToggle(theme) {
+      root.style.colorScheme = theme;
+      themeToggle.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+      themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+    }
+
+    syncToggle(currentTheme());
+
+    themeToggle.addEventListener('click', function () {
+      var next = currentTheme() === 'light' ? 'dark' : 'light';
+      if (next === 'light') {
+        root.setAttribute('data-theme', 'light');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+      syncToggle(next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  }
 })();

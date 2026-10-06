@@ -3,7 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark light">
+<script>
+  // Applied before first paint to avoid a flash of the wrong theme.
+  // Default (no stored choice, or "dark") needs no attribute at all --
+  // the base :root tokens in styles.css already are the dark theme.
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      if (stored === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
 <title>Ashish Abraham — Data Analyst</title>
 <meta name="description" content="Portfolio of Ashish Abraham, a Data Analyst / BI professional with an MSc in Data Science from the University of Birmingham Dubai, based in Bangalore, India.">
 <meta property="og:title" content="Ashish Abraham — Data Analyst">
@@ -25,6 +36,15 @@
     <nav class="g-nav-links">
       <a class="g-nav-label" href="#skills">Skills</a>
       <a class="g-nav-label" href="mailto:ajabraham.642@gmail.com">Contact</a>
+      <button type="button" class="g-theme-toggle" id="theme-toggle" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="g-theme-icon g-theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"></circle>
+          <path d="M12 2.5v2.75M12 18.75v2.75M4.22 4.22l1.94 1.94M17.84 17.84l1.94 1.94M2.5 12h2.75M18.75 12h2.75M4.22 19.78l1.94-1.94M17.84 6.16l1.94-1.94"></path>
+        </svg>
+        <svg class="g-theme-icon g-theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.2 14.4A8.5 8.5 0 1 1 9.6 3.8a7 7 0 0 0 10.6 10.6Z"></path>
+        </svg>
+      </button>
     </nav>
   </div>
 </header>
@@ -67,7 +87,8 @@
             <p class="g-card-meta">Education</p>
             <ul class="g-credential-list">
               <li class="g-credential">
-                <img src="assets/logos/uob-dubai-dark.svg" alt="University of Birmingham Dubai" class="g-credential-logo">
+                <img src="assets/logos/uob-dubai-dark.svg" alt="University of Birmingham Dubai" class="g-credential-logo g-theme-asset g-theme-asset--dark">
+                <img src="assets/logos/uob-dubai-light.svg" alt="University of Birmingham Dubai" class="g-credential-logo g-theme-asset g-theme-asset--light">
                 <div class="g-credential-text">
                   <span class="g-credential-name">University of Birmingham, Dubai</span>
                   <span class="g-credential-role">MSc in Data Science</span>
@@ -138,7 +159,8 @@
         </div>
 
         <a class="g-feature-photo" href="football-case-study.html" aria-label="Read the Performance vs Prestige case study">
-          <img src="assets/football-valuation.jpg" alt="Five football players in their club and national kits, viewed from behind, each standing in front of their league's crest and total market value: Ligue 1, Serie A, Bundesliga, LaLiga, and the Premier League">
+          <img src="assets/Football_Dark.jpg" alt="Five football players in their club and national kits, viewed from behind, each standing in front of their league's crest and total market value: Ligue 1, Serie A, Bundesliga, LaLiga, and the Premier League" class="g-theme-asset g-theme-asset--dark">
+          <img src="assets/Football_Light.png" alt="Five football players in their club and national kits, viewed from behind, each standing in front of their league's crest and total market value: Ligue 1, Serie A, Bundesliga, LaLiga, and the Premier League" class="g-theme-asset g-theme-asset--light">
         </a>
       </div>
 
@@ -156,7 +178,8 @@
 
         <article class="g-card">
           <a class="g-card-media" href="dxb-case-study.html" aria-label="Read the DXB: The Move to DWC case study">
-            <img src="assets/screenshot-dxb-movements.webp" alt="Emirates aircraft parked at Dubai International Airport's terminal at dusk, with the Dubai skyline and Burj Khalifa in the background">
+            <img src="assets/DXB_Dark.png" alt="Emirates aircraft parked at Dubai International Airport's terminal at dusk, with the Dubai skyline and Burj Khalifa in the background" class="g-theme-asset g-theme-asset--dark">
+            <img src="assets/DXB_Light.webp" alt="Emirates aircraft parked at Dubai International Airport's terminal at dusk, with the Dubai skyline and Burj Khalifa in the background" class="g-theme-asset g-theme-asset--light">
           </a>
           <a class="g-card-title-link" href="dxb-case-study.html" aria-label="Read the DXB: The Move to DWC case study">
             <h3 class="g-card-title">DXB: The Move to DWC</h3>
@@ -171,7 +194,8 @@
 
         <article class="g-card">
           <a class="g-card-media" href="spotify-case-study.html" aria-label="Read the Beyond Wrapped case study">
-            <img src="assets/spotify-listening.jpg" alt="Headphones and earbuds beside a glowing Spotify logo on a black background">
+            <img src="assets/Spotify_Dark.jpg" alt="Headphones and earbuds beside a glowing Spotify logo on a black background" class="g-theme-asset g-theme-asset--dark">
+            <img src="assets/Spotify_Light.png" alt="Headphones and earbuds beside a glowing Spotify logo on a black background" class="g-theme-asset g-theme-asset--light">
           </a>
           <a class="g-card-title-link" href="spotify-case-study.html" aria-label="Read the Beyond Wrapped case study">
             <h3 class="g-card-title">Spotify: Beyond Wrapped</h3>
@@ -186,7 +210,8 @@
 
         <article class="g-card">
           <a class="g-card-media" href="f1-case-study.html" aria-label="Read the F1: Grid to Glory case study">
-            <img src="assets/f1-race.jpg" alt="A pack of Formula 1 cars battling through a corner">
+            <img src="assets/F1_Dark.png" alt="A pack of Formula 1 cars battling through a corner" class="g-theme-asset g-theme-asset--dark">
+            <img src="assets/F1_Light.jpg" alt="A pack of Formula 1 cars battling through a corner" class="g-theme-asset g-theme-asset--light">
           </a>
           <a class="g-card-title-link" href="f1-case-study.html" aria-label="Read the F1: Grid to Glory case study">
             <h3 class="g-card-title">F1: Grid to Glory</h3>

@@ -3,7 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark light">
+<script>
+  // Applied before first paint to avoid a flash of the wrong theme.
+  // Default (no stored choice, or "dark") needs no attribute at all --
+  // the base :root tokens in styles.css already are the dark theme.
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      if (stored === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
 <title>Performance vs Prestige: A Machine Learning Study of Bias in Football Player Valuations — Ashish Abraham</title>
 <meta name="description" content="An MSc dissertation using position-specific ML models and SHAP to decompose football players' market values into a performance part and a context part, and finds that Premier League affiliation alone is worth millions, in every position.">
 <meta property="og:title" content="Performance vs Prestige: A Machine Learning Study of Bias in Football Player Valuations">
@@ -25,6 +36,15 @@
     <nav class="g-nav-links">
       <a class="g-nav-label" href="index.html#skills">Skills</a>
       <a class="g-nav-label" href="mailto:ajabraham.642@gmail.com">Contact</a>
+      <button type="button" class="g-theme-toggle" id="theme-toggle" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="g-theme-icon g-theme-icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"></circle>
+          <path d="M12 2.5v2.75M12 18.75v2.75M4.22 4.22l1.94 1.94M17.84 17.84l1.94 1.94M2.5 12h2.75M18.75 12h2.75M4.22 19.78l1.94-1.94M17.84 6.16l1.94-1.94"></path>
+        </svg>
+        <svg class="g-theme-icon g-theme-icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.2 14.4A8.5 8.5 0 1 1 9.6 3.8a7 7 0 0 0 10.6 10.6Z"></path>
+        </svg>
+      </button>
     </nav>
   </div>
 </header>
