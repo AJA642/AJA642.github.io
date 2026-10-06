@@ -44,12 +44,12 @@
   --body-strong:    #1a1a1a;
   --muted:          #6b6b6b;
   --muted-soft:     #8f8f8f;
-  --hairline:       #e3e3e3;
-  --hairline-strong:#cccccc;
-  --canvas:         #ffffff;
-  --surface-soft:   #f6f6f6;
-  --surface-card:   #f0f0f0;
-  --surface-elevated:#ebebeb;
+  --hairline:       #d9d7d4;
+  --hairline-strong:#c2bfbb;
+  --canvas:         #f3f2f0;
+  --surface-soft:   #ebe9e7;
+  --surface-card:   #e4e2df;
+  --surface-elevated:#dddbd8;
   --on-primary:     #ffffff;
   --link:           #1d5fa8;
   --accent:         #c85a0f;
