@@ -1024,7 +1024,7 @@ a.g-caption-link:hover { color: var(--ink); }
     grid-template-columns: 1fr auto 1fr;
   }
   .g-nav-menu-trigger { display: inline-flex; justify-self: start; }
-  .g-wordmark { justify-self: center; text-align: center; }
+  #nav-wordmark { justify-self: center; text-align: center; }
   .g-nav-links { justify-self: end; }
   .g-nav-links .g-nav-label { display: none; }
 
