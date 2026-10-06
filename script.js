@@ -141,6 +141,50 @@
     });
   });
 
+  // Mobile nav menu -- hamburger trigger shown only at phone widths
+  // (CSS hides it above the 767px breakpoint), revealing a small dropdown
+  // with Skills, Contact, and Projects in place of the nav-links row that
+  // no longer fits next to the theme toggle on a narrow screen.
+  var navMenuTrigger = document.getElementById('nav-menu-trigger');
+  var navMenu = document.getElementById('nav-mobile-menu');
+  var navHeader = document.querySelector('.g-nav');
+  if (navMenuTrigger && navMenu && navHeader) {
+    function closeNavMenu() {
+      navHeader.classList.remove('is-menu-open');
+      navMenuTrigger.setAttribute('aria-expanded', 'false');
+      navMenu.setAttribute('aria-hidden', 'true');
+    }
+    function openNavMenu() {
+      navHeader.classList.add('is-menu-open');
+      navMenuTrigger.setAttribute('aria-expanded', 'true');
+      navMenu.setAttribute('aria-hidden', 'false');
+    }
+
+    navMenuTrigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (navHeader.classList.contains('is-menu-open')) {
+        closeNavMenu();
+      } else {
+        openNavMenu();
+      }
+    });
+
+    navMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeNavMenu);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!navHeader.contains(e.target)) closeNavMenu();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeNavMenu();
+        navMenuTrigger.focus();
+      }
+    });
+  }
+
   // Theme toggle — flips html[data-theme] between the default (dark,
   // no attribute needed) and "light", persists the choice, and keeps
   // the button's aria state and label in sync. The inline script in
